@@ -5,14 +5,14 @@ import model.interfaces.Player;
 
 public class SimplePlayer implements Player{
 	
-	String playerNum;
+	String playerId;
 	String name;
 	int points;
 	int bet;
 	DicePair roll;
 	
-	public SimplePlayer(String playerNum, String name, int points) {
-		this.playerNum = playerNum;
+	public SimplePlayer(String playerId, String name, int points) {
+		this.playerId = playerId;
 		this.name = name;
 		this.points = points;
 	}
@@ -36,12 +36,11 @@ public class SimplePlayer implements Player{
 	@Override
 	public void setPoints(int points) {
 		this.points = points;
-		
 	}
 
 	@Override
 	public String getPlayerId() {
-		return this.playerNum;
+		return this.playerId;
 	}
 
 	@Override

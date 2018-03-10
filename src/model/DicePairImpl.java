@@ -3,23 +3,29 @@ package model;
 import model.interfaces.DicePair;
 
 public class DicePairImpl implements DicePair{
+	int dice1;
+	int dice2;
+	int numFaces;
+	
+	public DicePairImpl(int dice1, int dice2, int numFaces) {
+		this.dice1 = dice1;
+		this.dice2 = dice2;
+		this.numFaces = numFaces;
+	}
 
 	@Override
 	public int getDice1() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.dice1;
 	}
 
 	@Override
 	public int getDice2() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.dice2;
 	}
 
 	@Override
 	public int getNumFaces() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.numFaces;
 	}
 
 }
