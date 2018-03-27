@@ -3,8 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import model.interfaces.DicePair;
 import model.interfaces.GameEngine;
@@ -13,14 +13,14 @@ import model.interfaces.Player;
 
 public class GameEngineImpl implements GameEngine{
 	
-	HashMap<String, Player> players = new HashMap<String, Player>();
-	GameEngineCallback gameEngineCallback;
+	Map<String, Player> players = new HashMap<String, Player>();
+	List<GameEngineCallback> gameEngineCallbacks = new ArrayList<GameEngineCallback>();
 	private final int MIN_DIE_NUM = 1;
 	
 	public GameEngineImpl() { 
 	}
 	
-	public int roll(int numberOfFaces) {
+	private int roll(int numberOfFaces) {
 		return MIN_DIE_NUM + (int)(Math.random() * ((numberOfFaces - MIN_DIE_NUM) + 1));
 	}
 
@@ -29,49 +29,50 @@ public class GameEngineImpl implements GameEngine{
 		return player.placeBet(bet);
 	}
 	
-	/**
-	 * roll the dice progressing from the initialDelay to the finalDelay in
-	 * increments of delayIncrement, delays are in milliseconds (ms)
-	 * 
-	 * 1. start at initialDelay then increment the delay each time a new number
-	 *    is shown on the die faces 
-	 * 2. call GameEngineCallback.intermediateResult(...) or intermediateHouseResult(...) each time 
-	 *    a pair of new dice faces are shown until delay greater than or equal to finalDelay 
-	 * 3. call GameEngineCallback.result(...) or houseResult(...) with final result for player or house 
-	 * 4. make sure you update the player with final result so it can be retreived later
-	 * 
-	 * @param player
-	 *            the player who is rolling and will have their result set
-	 *            at the end of the roll
-	 * @param initialDelay
-	 *            the starting delay in ms between updates (based on how fast
-	 *            dice are rolling)
-	 * @param finalDelay
-	 *            the final delay in ms between updates when the dice stop
-	 *            rolling
-	 * @param delayIncrement
-	 *            how much the dice slow down (delay gets longer) after each
-	 *            roll/tumble
-	 * 
-	 * @see model.interfaces.GameEngineCallback
-	 * 
-	 */
 	@Override
 	public void rollPlayer(Player player, int initialDelay, int finalDelay, int delayIncrement) {
 		DicePair dice = null;
+		int initDel = initialDelay;
 		
-		while(initialDelay < finalDelay) {
+		while(initDel < finalDelay) {
 			dice = new DicePairImpl(roll(NUM_FACES),roll(NUM_FACES),NUM_FACES);
-			gameEngineCallback.intermediateResult(player, dice, this);
-			initialDelay += delayIncrement;
+			
+			for(GameEngineCallback gecb: gameEngineCallbacks) {
+				gecb.intermediateResult(player, dice, this);
+			}
+			
+			initDel += delayIncrement;
 		}
+		
+		dice = new DicePairImpl(roll(NUM_FACES),roll(NUM_FACES),NUM_FACES);
+		
+		for(GameEngineCallback gecb: gameEngineCallbacks) {
+			gecb.result(player, dice, this);
+		}
+		
 		player.setRollResult(dice);
 	}
 
 	@Override
 	public void rollHouse(int initialDelay, int finalDelay, int delayIncrement) {
-		// TODO Auto-generated method stub
+		DicePair dice = null;
+		int initDel = initialDelay;
 		
+		while(initDel < finalDelay) {
+			dice = new DicePairImpl(roll(NUM_FACES),roll(NUM_FACES),NUM_FACES);
+			
+			for(GameEngineCallback gecb: gameEngineCallbacks) {
+				gecb.intermediateHouseResult(dice, this);
+			}
+			
+			initDel += delayIncrement;
+		}
+		
+		dice = new DicePairImpl(roll(NUM_FACES),roll(NUM_FACES),NUM_FACES);
+		
+		for(GameEngineCallback gecb: gameEngineCallbacks) {
+			gecb.houseResult(dice, this);
+		}
 	}
 
 	@Override
@@ -94,13 +95,18 @@ public class GameEngineImpl implements GameEngine{
 
 	@Override
 	public void addGameEngineCallback(GameEngineCallback gameEngineCallback) {
-		this.gameEngineCallback = gameEngineCallback;
+		this.gameEngineCallbacks.add(gameEngineCallback);
 		
 	}
 
 	@Override
 	public boolean removeGameEngineCallback(GameEngineCallback gameEngineCallback) {
-		// TODO Auto-generated method stub
+		for(GameEngineCallback g : gameEngineCallbacks) {
+			if(g.equals(gameEngineCallback)) {
+				gameEngineCallbacks.remove(g);
+				return true;
+			}
+		}
 		return false;
 	}
 

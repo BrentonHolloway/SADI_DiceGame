@@ -1,5 +1,6 @@
 package model;
 
+import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,6 +23,11 @@ public class GameEngineCallbackImpl implements GameEngineCallback
 
 	public GameEngineCallbackImpl()
 	{
+		ConsoleHandler consoleHandler = new ConsoleHandler();
+		consoleHandler.setLevel(Level.FINE);
+		logger.addHandler(consoleHandler);
+		logger.setUseParentHandlers(false);
+		
 		//FINE shows rolling output, INFO only shows result
 		logger.setLevel(Level.FINE);
 	}
@@ -29,28 +35,22 @@ public class GameEngineCallbackImpl implements GameEngineCallback
 	@Override
 	public void intermediateResult(Player player, DicePair dicePair, GameEngine gameEngine)
 	{
-		//intermediate results logged at Level.FINE
-		logger.log(Level.FINE, "Intermediate data to log .. String.format() is good here!");
-		// TO DO: complete this method to log results
+		logger.log(Level.FINE, String.format("%s: ROLLING Die 1: %d Die 2: %d .. Total: %d", player.getPlayerName(), dicePair.getDice1(), dicePair.getDice2(), dicePair.getDice1()+dicePair.getDice2()));
 	}
 
 	@Override
 	public void result(Player player, DicePair result, GameEngine gameEngine)
 	{
-		//final results logged at Level.INFO
-		logger.log(Level.INFO, "Result data to log .. String.format() is good here!");
-		//TODO complete this method to log results
+		logger.log(Level.INFO, String.format("%s: *RESULT* Die 1: %d Die 2: %d .. Total: %d", player.getPlayerName(), result.getDice1(), result.getDice2(), result.getDice1()+result.getDice2()));
 	}
 
 	@Override
 	public void intermediateHouseResult(DicePair dicePair, GameEngine gameEngine) {
-		//TODO Auto-generated method stub
+		logger.log(Level.FINE, String.format("House: ROLLING Die 1: %d Die 2: %d .. Total: %d", dicePair.getDice1(), dicePair.getDice2(), dicePair.getDice1()+dicePair.getDice2()));
 	}
 
 	@Override
 	public void houseResult(DicePair result, GameEngine gameEngine) {
-		// TODO Auto-generated method stub
+		logger.log(Level.INFO, String.format("House: *RESULT* Die 1: %d Die 2: %d .. Total: %d", result.getDice1(), result.getDice2(), result.getDice1()+result.getDice2()));
 	}
-
-	// TO DO: complete the GameEngineCallback interface implementation
 }
