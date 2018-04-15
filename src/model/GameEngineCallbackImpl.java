@@ -29,7 +29,7 @@ public class GameEngineCallbackImpl implements GameEngineCallback
 		logger.setUseParentHandlers(false);
 		
 		//FINE shows rolling output, INFO only shows result
-		logger.setLevel(Level.FINE);
+		logger.setLevel(Level.INFO);
 	}
 
 	@Override

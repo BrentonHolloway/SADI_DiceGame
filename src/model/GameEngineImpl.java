@@ -11,10 +11,15 @@ import model.interfaces.GameEngine;
 import model.interfaces.GameEngineCallback;
 import model.interfaces.Player;
 
+/**
+ * 
+ * @author Brenton Holloway SID: s3485302
+ *
+ */
 public class GameEngineImpl implements GameEngine{
 	
-	Map<String, Player> players = new HashMap<String, Player>();
-	List<GameEngineCallback> gameEngineCallbacks = new ArrayList<GameEngineCallback>();
+	Map<String, Player> players = new HashMap<String, Player>(); //Hashmap for storing players
+	List<GameEngineCallback> gameEngineCallbacks = new ArrayList<GameEngineCallback>(); //ArrayList for storing game engine call backs
 	private final int MIN_DIE_NUM = 1;
 	
 	public GameEngineImpl() { 
@@ -26,7 +31,11 @@ public class GameEngineImpl implements GameEngine{
 
 	@Override
 	public boolean placeBet(Player player, int bet) {
-		return player.placeBet(bet);
+		if(players.containsValue(player)) {
+			return players.get(player.getPlayerId()).placeBet(bet);
+		}else {
+			return false;
+		}
 	}
 	
 	@Override
@@ -34,23 +43,30 @@ public class GameEngineImpl implements GameEngine{
 		DicePair dice = null;
 		int initDel = initialDelay;
 		
-		while(initDel < finalDelay) {
+		if(!players.containsValue(player))
+			return;
+		
+		if(player.getBet() > 0) {
+			//intermediate dice rolls for the player
+			while(initDel < finalDelay) {
+				dice = new DicePairImpl(roll(NUM_FACES),roll(NUM_FACES),NUM_FACES);
+				
+				for(GameEngineCallback gecb: gameEngineCallbacks) {
+					gecb.intermediateResult(player, dice, this);
+				}
+				
+				initDel += delayIncrement;
+			}
+			
+			//final dice roll
 			dice = new DicePairImpl(roll(NUM_FACES),roll(NUM_FACES),NUM_FACES);
 			
 			for(GameEngineCallback gecb: gameEngineCallbacks) {
-				gecb.intermediateResult(player, dice, this);
+				gecb.result(player, dice, this);
 			}
 			
-			initDel += delayIncrement;
+			player.setRollResult(dice);
 		}
-		
-		dice = new DicePairImpl(roll(NUM_FACES),roll(NUM_FACES),NUM_FACES);
-		
-		for(GameEngineCallback gecb: gameEngineCallbacks) {
-			gecb.result(player, dice, this);
-		}
-		
-		player.setRollResult(dice);
 	}
 
 	@Override
@@ -58,6 +74,7 @@ public class GameEngineImpl implements GameEngine{
 		DicePair dice = null;
 		int initDel = initialDelay;
 		
+		//intermediate dice rolls for the house
 		while(initDel < finalDelay) {
 			dice = new DicePairImpl(roll(NUM_FACES),roll(NUM_FACES),NUM_FACES);
 			
@@ -68,16 +85,37 @@ public class GameEngineImpl implements GameEngine{
 			initDel += delayIncrement;
 		}
 		
+		//final dice roll
 		dice = new DicePairImpl(roll(NUM_FACES),roll(NUM_FACES),NUM_FACES);
 		
 		for(GameEngineCallback gecb: gameEngineCallbacks) {
 			gecb.houseResult(dice, this);
 		}
+		
+		//update plays points
+		for(Player p : players.values()) {
+			if(p.getBet() > 0) {
+				if((p.getRollResult().getDice1() + p.getRollResult().getDice2()) > (dice.getDice1() + dice.getDice2())) {
+					//player wins 2* their bet
+					p.setPoints(p.getPoints()+2*p.getBet());
+					//set bet to zero again
+					p.placeBet(0);
+				}else if((p.getRollResult().getDice1() + p.getRollResult().getDice2()) == (dice.getDice1() + dice.getDice2())){
+					//player has their bet amount returned
+					p.setPoints(p.getPoints()+p.getBet());
+					//set bet to zero
+					p.placeBet(0);
+				}else {
+					//player looses bet
+					p.placeBet(0);
+				}
+			}
+		}
 	}
 
 	@Override
 	public void addPlayer(Player player) {
-		players.put(player.getPlayerId(), player);
+		this.players.put(player.getPlayerId(), player);
 	}
 
 	@Override
@@ -87,31 +125,21 @@ public class GameEngineImpl implements GameEngine{
 
 	@Override
 	public boolean removePlayer(Player player) {
-		if(this.players.remove(player.getPlayerId()) == null) {
-			return false;
-		}
-		return true;
+		return this.players.remove(player.getPlayerId(), player);
 	}
 
 	@Override
 	public void addGameEngineCallback(GameEngineCallback gameEngineCallback) {
 		this.gameEngineCallbacks.add(gameEngineCallback);
-		
 	}
 
 	@Override
 	public boolean removeGameEngineCallback(GameEngineCallback gameEngineCallback) {
-		for(GameEngineCallback g : gameEngineCallbacks) {
-			if(g.equals(gameEngineCallback)) {
-				gameEngineCallbacks.remove(g);
-				return true;
-			}
-		}
-		return false;
+		return this.gameEngineCallbacks.remove(gameEngineCallback);
 	}
 
 	@Override
 	public Collection<Player> getAllPlayers() {
-		return players.values();
+		return this.players.values();
 	}
 }

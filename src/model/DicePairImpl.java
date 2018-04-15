@@ -2,6 +2,11 @@ package model;
 
 import model.interfaces.DicePair;
 
+/**
+ * 
+ * @author Brenton Holloway SID: s3485302
+ *
+ */
 public class DicePairImpl implements DicePair{
 	int dice1;
 	int dice2;
@@ -12,7 +17,8 @@ public class DicePairImpl implements DicePair{
 		this.dice2 = dice2;
 		this.numFaces = numFaces;
 	}
-
+	
+	
 	@Override
 	public int getDice1() {
 		return this.dice1;

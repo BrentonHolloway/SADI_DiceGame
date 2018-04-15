@@ -1,5 +1,7 @@
 package client;
 
+import com.sun.org.glassfish.gmbal.GmbalException;
+
 import model.GameEngineCallbackImpl;
 import model.GameEngineImpl;
 import model.SimplePlayer;
@@ -14,6 +16,11 @@ import model.interfaces.Player;
  * Additional testing should be done by copying and extending this class while ensuring this class still works.
  * 
  * @author Caspar Ryan
+ * @author Brenton Holloway s3485302
+ * 
+ * PLEASE NOTE: IN THE ORIGINAL CODE YOU WHERE ADDING A PLAYER AFTER PLACING A BET
+ * 				IT ONLY MAKES SENSE TO ADD THE PLAYER TO THE GAME BEFORE PLACING A BET
+ * 
  * 
  */
 public class SimpleTestClient
@@ -25,7 +32,7 @@ public class SimpleTestClient
 
 		// create two test players (NOTE: you will need to implement the 3 arg contructor in SimplePlayer)
 		Player[] players = new Player[]
-		{ new SimplePlayer("1", "The Roller", 1000), new SimplePlayer("2", "The Loser", 500) };
+		{ new SimplePlayer("1", "The Roller", 1000), new SimplePlayer("2", "The Loser", 500), new SimplePlayer("3", "Fake", 100000) };
 
 		// register the callback for notifications (all logging output is done by GameEngineCallbackImpl)
 		// see provided skeleton class GameEngineCallbackImpl.java
@@ -34,8 +41,14 @@ public class SimpleTestClient
 		// main loop to add players place a bet and roll
 		for (Player player : players)
 		{
+			/*ORIGINAL
+			 * gameEngine.placeBet(player, 100);
+			 * gameEngine.addPlayer(player);
+			 * gameEngine.rollPlayer(player, 1, 100, 20);
+			 */
+			
+			gameEngine.addPlayer(player);//can't place be before adding the player
 			gameEngine.placeBet(player, 100);
-			gameEngine.addPlayer(player);
 			gameEngine.rollPlayer(player, 1, 100, 20);
 		}
 

@@ -3,6 +3,11 @@ package model;
 import model.interfaces.DicePair;
 import model.interfaces.Player;
 
+/**
+ * 
+ * @author Brenton Holloway SID: s3485302
+ *
+ */
 public class SimplePlayer implements Player{
 	
 	String playerId;
@@ -45,11 +50,12 @@ public class SimplePlayer implements Player{
 
 	@Override
 	public boolean placeBet(int bet) {
-		if(bet <= points) {
+		if(bet >= 0 && bet <= points) {
 			this.points -= bet;
-			this.bet += bet;
+			this.bet = bet;
 			return true;
 		} else {
+			this.bet = 0;
 			return false;
 		}
 	}
