@@ -2,11 +2,11 @@ package client;
 
 import com.sun.org.glassfish.gmbal.GmbalException;
 
-import model.GameEngineCallbackImpl;
 import model.GameEngineImpl;
 import model.SimplePlayer;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
+import view.GameEngineCallbackImpl;
 
 /**
  * Simple console client for SADI assignment 1, 2018
