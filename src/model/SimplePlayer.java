@@ -52,7 +52,7 @@ public class SimplePlayer implements Player{
 	public boolean placeBet(int bet) {
 		if(bet >= 0 && bet <= points) {
 			this.points -= bet;
-			this.bet = bet;
+			this.bet += bet;
 			return true;
 		} else {
 			this.bet = 0;

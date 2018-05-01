@@ -8,9 +8,9 @@ import model.interfaces.DicePair;
  *
  */
 public class DicePairImpl implements DicePair{
-	int dice1;
-	int dice2;
-	int numFaces;
+	final int dice1;
+	final int dice2;
+	final int numFaces;
 	
 	public DicePairImpl(int dice1, int dice2, int numFaces) {
 		this.dice1 = dice1;
