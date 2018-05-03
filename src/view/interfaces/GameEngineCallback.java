@@ -1,4 +1,8 @@
-package model.interfaces;
+package view.interfaces;
+
+import model.interfaces.DicePair;
+import model.interfaces.GameEngine;
+import model.interfaces.Player;
 
 /**
  * Assignment interface for SADI to notify client of GameEngine events for display/logging e.g.

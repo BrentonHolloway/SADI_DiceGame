@@ -6,15 +6,15 @@ import java.util.logging.Logger;
 
 import model.interfaces.DicePair;
 import model.interfaces.GameEngine;
-import model.interfaces.GameEngineCallback;
 import model.interfaces.Player;
+import view.interfaces.GameEngineCallback;
 
 /**
  * 
  * Skeleton example implementation of GameEngineCallback showing Java logging behaviour
  * 
  * @author Caspar Ryan
- * @see model.interfaces.GameEngineCallback
+ * @see view.interfaces.GameEngineCallback
  * 
  */
 public class GameEngineCallbackImpl implements GameEngineCallback

@@ -2,6 +2,8 @@ package model.interfaces;
 
 import java.util.Collection;
 
+import view.interfaces.GameEngineCallback;
+
 /**
  * Assignment interface for SADI providing main Dice Game model functionality s1
  * 2018
@@ -52,7 +54,7 @@ public interface GameEngine
 	 *            how much the dice slow down (delay gets longer) after each
 	 *            roll/tumble
 	 * 
-	 * @see model.interfaces.GameEngineCallback
+	 * @see view.interfaces.GameEngineCallback
 	 * 
 	 */
 	public abstract void rollPlayer(Player player, int initialDelay, int finalDelay, int delayIncrement);

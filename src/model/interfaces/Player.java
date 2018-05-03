@@ -54,7 +54,7 @@ public interface Player
 	/**
 	 * @return a DicePair containing both dice values (updated from the
 	 *         GameEngine)
-	 * @see model.interfaces.GameEngineCallback
+	 * @see view.interfaces.GameEngineCallback
 	 */
 	public abstract DicePair getRollResult();
 
@@ -63,7 +63,7 @@ public interface Player
 	 * @param rollResult
 	 *            a DicePair containing both dice values (updated from the
 	 *            GameEngine)
-	 * @see model.interfaces.GameEngineCallback
+	 * @see view.interfaces.GameEngineCallback
 	 */
 	public abstract void setRollResult(DicePair rollResult);
 

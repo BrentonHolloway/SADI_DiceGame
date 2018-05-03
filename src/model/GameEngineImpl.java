@@ -9,8 +9,8 @@ import java.util.Map;
 
 import model.interfaces.DicePair;
 import model.interfaces.GameEngine;
-import model.interfaces.GameEngineCallback;
 import model.interfaces.Player;
+import view.interfaces.GameEngineCallback;
 
 /**
  * 
