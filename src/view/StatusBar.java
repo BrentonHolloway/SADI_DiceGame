@@ -14,7 +14,7 @@ public class StatusBar extends JPanel {
 	public StatusBar() {
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		
-		JLabel player = new JLabel("Player Name");
+		JLabel player = new JLabel("No Players Added");
 		add(player);
 	}
 }

@@ -5,6 +5,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import controller.file.*;
+import controller.menu.game.*;
 
 
 public class MainMenuBar extends JMenuBar {
@@ -28,6 +29,11 @@ public class MainMenuBar extends JMenuBar {
 		save.addActionListener(new SaveMenuAL());
 		load.addActionListener(new LoadMenuAL());
 		quit.addActionListener(new QuitMenuAL());
+		
+		addPlayer.addActionListener(new AddPlayerAL());
+		updatePlayer.addActionListener(new UpdatePlayerAL());
+		removePlayer.addActionListener(new RemovePlayerAL());
+		
 		
 		file.add(save);
 		file.add(load);

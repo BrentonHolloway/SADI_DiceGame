@@ -28,11 +28,10 @@ public class MainFrame extends JFrame {
 	}
 	
 	public static void main(String[] args) {
+		final GameEngine gameEngine = new GameEngineImpl();
 		new Thread() {
 			@Override
 			public void run() {
-				final GameEngine gameEngine = new GameEngineImpl();
-				
 				gameEngine.addGameEngineCallback(new GameEngineCallbackImpl());
 				gameEngine.addGameEngineCallback(new GameEngineCallbackGUI());
 			}
@@ -40,7 +39,8 @@ public class MainFrame extends JFrame {
 		
 		SwingUtilities.invokeLater(new Runnable() {
 		    public void run() {
-		        new MainFrame();
+		        JFrame mainFrame = new MainFrame();
+		        mainFrame.setLocationRelativeTo(null);
 		    }
 		});
 	}
