@@ -1,11 +1,10 @@
 package client;
 
-import com.sun.org.glassfish.gmbal.GmbalException;
-
 import model.GameEngineImpl;
 import model.SimplePlayer;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
+import view.GameEngineCallbackGUI;
 import view.GameEngineCallbackImpl;
 
 /**
@@ -37,6 +36,7 @@ public class SimpleTestClient
 		// register the callback for notifications (all logging output is done by GameEngineCallbackImpl)
 		// see provided skeleton class GameEngineCallbackImpl.java
 		gameEngine.addGameEngineCallback(new GameEngineCallbackImpl());
+		gameEngine.addGameEngineCallback(new GameEngineCallbackGUI());
 
 		// main loop to add players place a bet and roll
 		for (Player player : players)
