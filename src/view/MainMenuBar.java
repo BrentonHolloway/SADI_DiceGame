@@ -4,6 +4,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import controller.file.*;
+
+
 public class MainMenuBar extends JMenuBar {
 	private static final long serialVersionUID = 4050748458020858696L;
 	public MainMenuBar() {
@@ -22,6 +25,10 @@ public class MainMenuBar extends JMenuBar {
 		JMenuItem howToPlay = new JMenuItem("How to play");
 		JMenuItem credits = new JMenuItem("Credits");
 		
+		save.addActionListener(new SaveMenuAL());
+		load.addActionListener(new LoadMenuAL());
+		quit.addActionListener(new QuitMenuAL());
+		
 		file.add(save);
 		file.add(load);
 		file.add(quit);
@@ -34,8 +41,4 @@ public class MainMenuBar extends JMenuBar {
 		help.add(credits);
 		add(help);
 	}
-	
-	
-	
-	
 }
