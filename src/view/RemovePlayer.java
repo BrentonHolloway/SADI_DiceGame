@@ -20,9 +20,12 @@ public class RemovePlayer extends JDialog {
 	public RemovePlayer() {
 		setTitle("Remove Player");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setLocationRelativeTo(null);
 		setLayout(new GridBagLayout());
 		setResizable(false);
+		setModal(true);
 		
+		//Struts
 		Component topStrut = Box.createVerticalStrut(20);
 		GridBagConstraints gbc_topStrut = new GridBagConstraints();
 		gbc_topStrut.gridx = 2;
@@ -53,6 +56,7 @@ public class RemovePlayer extends JDialog {
 		gbc_rightStrut.gridy = 3;
 		add(rightStrut, gbc_rightStrut);
 		
+		//Combo Box of all players
 		JComboBox<Player> players = new JComboBox<Player>();
 		GridBagConstraints gbc_players = new GridBagConstraints();
 		gbc_players.gridwidth = 2;
@@ -62,6 +66,7 @@ public class RemovePlayer extends JDialog {
 		gbc_players.gridy = 1;
 		add(players, gbc_players);
 		
+		//Buttons
 		JButton cancel = new JButton("Cancel");
 		GridBagConstraints gbc_cancel = new GridBagConstraints();
 		gbc_cancel.anchor = GridBagConstraints.EAST;

@@ -9,6 +9,7 @@ import model.GameEngineImpl;
 import model.interfaces.GameEngine;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 
 public class MainFrame extends JFrame {
 	private static final long serialVersionUID = 8456560429229699542L;
@@ -41,6 +42,7 @@ public class MainFrame extends JFrame {
 		    public void run() {
 		        JFrame mainFrame = new MainFrame();
 		        mainFrame.setLocationRelativeTo(null);
+		        mainFrame.setMinimumSize(new Dimension(600, 400));
 		    }
 		});
 	}

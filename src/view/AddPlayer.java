@@ -28,115 +28,106 @@ public class AddPlayer extends JDialog {
 		setModal(true);
 		
 		Insets inset = new Insets(0, 0, 5, 5);
+
+		//--------- Constraints ---------
+		//Strut Constraints
+		GridBagConstraints strutConstraint = new GridBagConstraints();
 		
-		JLabel lblImage = new JLabel(new ImageIcon("./images/player(100-100).png"));
-		GridBagConstraints gbc_lblImage = new GridBagConstraints();
-		gbc_lblImage.gridwidth = 5;
-		gbc_lblImage.gridheight = 7;
-		gbc_lblImage.gridx = 1;
-		gbc_lblImage.gridy = 0;
-		add(lblImage, gbc_lblImage);
+		//Constraints for image
+		GridBagConstraints imageConstraint = new GridBagConstraints();
+		imageConstraint.gridwidth = 5;
+		imageConstraint.gridheight = 7;
+		imageConstraint.gridx = 1;
+		imageConstraint.gridy = 0;
 		
+		//Common Constraints for Labels
+		GridBagConstraints labelConstraint = new GridBagConstraints();
+		labelConstraint.anchor = GridBagConstraints.EAST;
+		labelConstraint.insets = inset;
+		
+		//Common Constraints for Inputs
+		GridBagConstraints inputConstraint = new GridBagConstraints();
+		inputConstraint.fill = GridBagConstraints.HORIZONTAL;
+		inputConstraint.insets = inset;
+		inputConstraint.gridwidth = 3;
+		inputConstraint.gridx = 8;
+		
+		//Common Constraints for Buttons
+		GridBagConstraints btnConstraint = new GridBagConstraints();
+		btnConstraint.insets = inset;
+		btnConstraint.gridy = 5;
+		
+		//--------- Struts ---------
 		//Horizontal Struts
 		Component leftHorizStrut = Box.createHorizontalStrut(20);
-		GridBagConstraints gbc_leftHorizStrut = new GridBagConstraints();
-		gbc_leftHorizStrut.insets = inset;
-		gbc_leftHorizStrut.gridx = 0;
-		gbc_leftHorizStrut.gridy = 2;
-		add(leftHorizStrut, gbc_leftHorizStrut);
+		strutConstraint.gridx = 0;
+		strutConstraint.gridy = 2;
+		add(leftHorizStrut, strutConstraint);
 		
 		Component centerHorizStrut = Box.createHorizontalStrut(20);
-		GridBagConstraints gbc_centerHorizStrut = new GridBagConstraints();
-		gbc_centerHorizStrut.insets = inset;
-		gbc_centerHorizStrut.gridx = 6;
-		gbc_centerHorizStrut.gridy = 3;
-		add(centerHorizStrut, gbc_centerHorizStrut);
+		strutConstraint.gridx = 6;
+		strutConstraint.gridy = 3;
+		add(centerHorizStrut, strutConstraint);
 		
 		Component rightHorizStrut = Box.createHorizontalStrut(20);
-		GridBagConstraints gbc_rightHorizStrut = new GridBagConstraints();
-		gbc_rightHorizStrut.insets = inset;
-		gbc_rightHorizStrut.gridx = 11;
-		gbc_rightHorizStrut.gridy = 2;
-		add(rightHorizStrut, gbc_rightHorizStrut);
+		strutConstraint.gridx = 11;
+		strutConstraint.gridy = 2;
+		add(rightHorizStrut, strutConstraint);
 		
 		//Vertical Struts
 		Component topVertStrut = Box.createVerticalStrut(20);
-		GridBagConstraints gbc_topVertStrut = new GridBagConstraints();
-		gbc_topVertStrut.insets = inset;
-		gbc_topVertStrut.gridx = 10;
-		gbc_topVertStrut.gridy = 1;
-		add(topVertStrut, gbc_topVertStrut);
+		strutConstraint.gridx = 10;
+		strutConstraint.gridy = 1;
+		add(topVertStrut, strutConstraint);
 		
 		Component middleVertStrut = Box.createVerticalStrut(20);
-		GridBagConstraints gbc_middleVertStrut = new GridBagConstraints();
-		gbc_middleVertStrut.insets = inset;
-		gbc_middleVertStrut.gridx = 10;
-		gbc_middleVertStrut.gridy = 4;
-		add(middleVertStrut, gbc_middleVertStrut);
+		strutConstraint.gridx = 10;
+		strutConstraint.gridy = 4;
+		add(middleVertStrut, strutConstraint);
 		
 		Component bottomVertStrut = Box.createVerticalStrut(20);
-		GridBagConstraints gbc_bottomVertStrut = new GridBagConstraints();
-		gbc_bottomVertStrut.insets = inset;
-		gbc_bottomVertStrut.gridx = 10;
-		gbc_bottomVertStrut.gridy = 6;
-		add(bottomVertStrut, gbc_bottomVertStrut);
+		strutConstraint.gridx = 10;
+		strutConstraint.gridy = 6;
+		add(bottomVertStrut, strutConstraint);
+		
+		//image
+		JLabel lblImage = new JLabel(new ImageIcon("./images/player(100-100).png"));
+		add(lblImage, imageConstraint);
 		
 		//Name Label
 		JLabel nameLabel = new JLabel("Name:");
-		GridBagConstraints gbc_nameLabel = new GridBagConstraints();
-		gbc_nameLabel.anchor = GridBagConstraints.EAST;
-		gbc_nameLabel.insets = inset;
-		gbc_nameLabel.gridx = 7;
-		gbc_nameLabel.gridy = 2;
-		add(nameLabel, gbc_nameLabel);
+		labelConstraint.gridx = 7;
+		labelConstraint.gridy = 2;
+		add(nameLabel, labelConstraint);
+		
+		//Account Balance Label
+		JLabel AccountBLabel = new JLabel("Account Balance:");
+		labelConstraint.gridx = 7;
+		labelConstraint.gridy = 3;
+		add(AccountBLabel, labelConstraint);
 		
 		//Text Input for name
 		nameTextInput = new JTextField();
 		nameTextInput.setText("Full Name");
 		nameTextInput.setToolTipText("Enter Players Full Name");
-		GridBagConstraints gbc_nameTextInput = new GridBagConstraints();
-		gbc_nameTextInput.fill = GridBagConstraints.HORIZONTAL;
-		gbc_nameTextInput.insets = inset;
-		gbc_nameTextInput.gridwidth = 3;
-		gbc_nameTextInput.gridx = 8;
-		gbc_nameTextInput.gridy = 2;
-		add(nameTextInput, gbc_nameTextInput);
-		
-		//Account Balance Label
-		JLabel AccountBLabel = new JLabel("Account Balance:");
-		GridBagConstraints gbc_AccountBLabel = new GridBagConstraints();
-		gbc_AccountBLabel.anchor = GridBagConstraints.EAST;
-		gbc_AccountBLabel.insets = inset;
-		gbc_AccountBLabel.gridx = 7;
-		gbc_AccountBLabel.gridy = 3;
-		add(AccountBLabel, gbc_AccountBLabel);
+		inputConstraint.gridy = 2;
+		add(nameTextInput, inputConstraint);
 		
 		//Text Input for Points
 		pointsTextInput = new JTextField();
 		pointsTextInput.setText("Points");
 		pointsTextInput.setToolTipText("Enter Points for Player");
-		GridBagConstraints gbc_pointsTextInput = new GridBagConstraints();
-		gbc_pointsTextInput.fill = GridBagConstraints.HORIZONTAL;
-		gbc_pointsTextInput.insets = inset;
-		gbc_pointsTextInput.gridwidth = 3;
-		gbc_pointsTextInput.gridx = 8;
-		gbc_pointsTextInput.gridy = 3;
-		add(pointsTextInput, gbc_pointsTextInput);
+		inputConstraint.gridy = 3;
+		add(pointsTextInput, inputConstraint);
 		
 		//Buttons
 		JButton btnCancel = new JButton("Cancel");
-		GridBagConstraints gbc_btnCancel = new GridBagConstraints();
-		gbc_btnCancel.insets = inset;
-		gbc_btnCancel.gridx = 9;
-		gbc_btnCancel.gridy = 5;
-		add(btnCancel, gbc_btnCancel);
+		btnConstraint.gridx = 9;
+		add(btnCancel, btnConstraint);
 		
 		JButton btnAddPlayer = new JButton("Add Player");
-		GridBagConstraints gbc_btnAddPlayer = new GridBagConstraints();
-		gbc_btnAddPlayer.insets = inset;
-		gbc_btnAddPlayer.gridx = 10;
-		gbc_btnAddPlayer.gridy = 5;
-		add(btnAddPlayer, gbc_btnAddPlayer);
+		btnConstraint.gridx = 10;
+		add(btnAddPlayer, btnConstraint);
 		
 		pack();
 	}
