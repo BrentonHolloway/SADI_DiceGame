@@ -11,12 +11,12 @@ import view.AddPlayerDialog;
 import view.MainPanel;
 
 
-public class AddPlayerAL implements ActionListener {
+public class AddPlayerMenuAL implements ActionListener {
 	
 	GameEngine gameEngine;
 	JPanel mp;
 
-	public AddPlayerAL(GameEngine gameEngine, JPanel mp) {
+	public AddPlayerMenuAL(GameEngine gameEngine, JPanel mp) {
 		this.gameEngine = gameEngine;
 		this.mp = mp;
 	}

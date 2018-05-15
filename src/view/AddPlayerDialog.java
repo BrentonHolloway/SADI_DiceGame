@@ -130,7 +130,7 @@ public class AddPlayerDialog extends JDialog {
 		
 		JButton btnAddPlayer = new JButton("Add Player");
 		btnConstraint.gridx = 10;
-		btnAddPlayer.addActionListener(new controller.game.AddPlayer(this, gameEngine, mp, nameTextInput, pointsTextInput));
+		btnAddPlayer.addActionListener(new controller.game.AddPlayerAL(this, gameEngine, mp, nameTextInput, pointsTextInput));
 		add(btnAddPlayer, btnConstraint);
 		
 		pack();

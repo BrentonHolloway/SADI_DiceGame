@@ -14,7 +14,7 @@ import model.interfaces.GameEngine;
 import model.interfaces.Player;
 import view.MainPanel;
 
-public class AddPlayer implements ActionListener {
+public class AddPlayerAL implements ActionListener {
 	
 	private GameEngine gameEngine;
 	private JTextField playerName;
@@ -22,7 +22,7 @@ public class AddPlayer implements ActionListener {
 	private MainPanel mp;
 	private JDialog owner;
 	
-	public AddPlayer(JDialog owner, GameEngine gameEngine, JPanel mp, JTextField playerName, JTextField points) {
+	public AddPlayerAL(JDialog owner, GameEngine gameEngine, JPanel mp, JTextField playerName, JTextField points) {
 		this.gameEngine = gameEngine;
 		this.playerName = playerName;
 		this.points = points;
