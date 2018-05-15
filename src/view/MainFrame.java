@@ -3,47 +3,39 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
-import model.GameEngineImpl;
 import model.interfaces.GameEngine;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 
 public class MainFrame extends JFrame {
 	private static final long serialVersionUID = 8456560429229699542L;
 	
-	public MainFrame() {
+	public MainFrame(final GameEngine gameEngine) {
 		super();
-		
-		JMenuBar menu = new MainMenuBar();
-		JPanel status = new StatusBar();
-		
-		add(menu, BorderLayout.NORTH);
-		add(status, BorderLayout.SOUTH);
-		
-		pack();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-	}
-	
-	public static void main(String[] args) {
-		final GameEngine gameEngine = new GameEngineImpl();
+		
+		JPanel mainPanel = new MainPanel(gameEngine);
+		JMenuBar menu = new MainMenuBar(gameEngine, mainPanel);
+		JPanel status = new StatusBar();
+		
+		
+		final GameEngineCallbackGUI gecbGUI = new GameEngineCallbackGUI();
 		new Thread() {
 			@Override
 			public void run() {
-				gameEngine.addGameEngineCallback(new GameEngineCallbackImpl());
-				gameEngine.addGameEngineCallback(new GameEngineCallbackGUI());
-			}
+				gameEngine.addGameEngineCallback(gecbGUI);
+			};
 		}.start();
 		
-		SwingUtilities.invokeLater(new Runnable() {
-		    public void run() {
-		        JFrame mainFrame = new MainFrame();
-		        mainFrame.setLocationRelativeTo(null);
-		        mainFrame.setMinimumSize(new Dimension(600, 400));
-		    }
-		});
+		
+		
+		
+		add(menu, BorderLayout.NORTH);
+		add(mainPanel, BorderLayout.CENTER);
+		add(status, BorderLayout.SOUTH);
+		
+		pack();
 	}
 }

@@ -1,4 +1,4 @@
-package controller.file;
+package controller.menu.file;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

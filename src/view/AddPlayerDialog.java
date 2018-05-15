@@ -3,7 +3,10 @@ package view;
 import javax.swing.JDialog;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import model.interfaces.GameEngine;
 
 import java.awt.Component;
 import java.awt.GridBagConstraints;
@@ -14,12 +17,12 @@ import javax.swing.Box;
 import javax.swing.ImageIcon;
 
 
-public class AddPlayer extends JDialog {
+public class AddPlayerDialog extends JDialog {
 	private static final long serialVersionUID = -1701323917859373346L;
 	private JTextField pointsTextInput;
 	private JTextField nameTextInput;
 	
-	public AddPlayer() {
+	public AddPlayerDialog(GameEngine gameEngine, JPanel mp) {
 		setTitle("Add Player");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -127,6 +130,7 @@ public class AddPlayer extends JDialog {
 		
 		JButton btnAddPlayer = new JButton("Add Player");
 		btnConstraint.gridx = 10;
+		btnAddPlayer.addActionListener(new controller.game.AddPlayer(this, gameEngine, mp, nameTextInput, pointsTextInput));
 		add(btnAddPlayer, btnConstraint);
 		
 		pack();

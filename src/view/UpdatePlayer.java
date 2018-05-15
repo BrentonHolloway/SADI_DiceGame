@@ -29,6 +29,7 @@ public class UpdatePlayer extends JDialog {
 		setModal(true);
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.LEFT);
 		add(tabbedPane, BorderLayout.CENTER);
+		
 		addTab(tabbedPane, new SimplePlayer("1", "Jane Doe", 18));
 		addTab(tabbedPane, new SimplePlayer("1", "John Smith", 18));
 		pack();
@@ -137,8 +138,6 @@ public class UpdatePlayer extends JDialog {
 		JButton btnAddPlayer = new JButton("Update Player");
 		btnConstraint.gridx = 10;
 		p.add(btnAddPlayer, btnConstraint);
-		
-		pack();
 		
 		tabbedPane.add(player.getPlayerName(), p);
 	}
