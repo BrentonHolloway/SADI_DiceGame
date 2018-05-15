@@ -3,13 +3,12 @@ package view;
 import java.awt.BorderLayout;
 
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 
-public class MainPanel extends JPanel {
+public class MainPanel extends UIPanel{
 	private static final long serialVersionUID = -8170814423728632014L;
 	
 	GameEngine gameEngine;
@@ -23,8 +22,9 @@ public class MainPanel extends JPanel {
 		
 		setVisible(true);
 	}
-	
-	public void updatePlayers() {
+
+	@Override
+	public void update() {
 		String playersS = null;
 		
 		for(Player p : gameEngine.getAllPlayers()) {

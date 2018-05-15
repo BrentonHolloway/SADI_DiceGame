@@ -3,7 +3,6 @@ package view;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 
 import controller.menu.file.*;
 import controller.menu.game.*;
@@ -12,7 +11,7 @@ import model.interfaces.GameEngine;
 
 public class MainMenuBar extends JMenuBar {
 	private static final long serialVersionUID = 4050748458020858696L;
-	public MainMenuBar(GameEngine gameEngine, JPanel mainPanel) {
+	public MainMenuBar(GameEngine gameEngine, UIPanel mainPanel) {
 		JMenu file = new JMenu("File");
 		JMenu game = new JMenu("Game");
 		JMenu help = new JMenu("Help");

@@ -4,19 +4,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JDialog;
-import javax.swing.JPanel;
 
 import model.interfaces.GameEngine;
 import view.AddPlayerDialog;
-import view.MainPanel;
+import view.UIPanel;
 
 
 public class AddPlayerMenuAL implements ActionListener {
 	
 	GameEngine gameEngine;
-	JPanel mp;
+	UIPanel mp;
 
-	public AddPlayerMenuAL(GameEngine gameEngine, JPanel mp) {
+	public AddPlayerMenuAL(GameEngine gameEngine, UIPanel mp) {
 		this.gameEngine = gameEngine;
 		this.mp = mp;
 	}

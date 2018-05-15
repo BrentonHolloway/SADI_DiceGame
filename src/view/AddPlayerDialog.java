@@ -22,7 +22,7 @@ public class AddPlayerDialog extends JDialog {
 	private JTextField pointsTextInput;
 	private JTextField nameTextInput;
 	
-	public AddPlayerDialog(GameEngine gameEngine, JPanel mp) {
+	public AddPlayerDialog(GameEngine gameEngine, UIPanel mp) {
 		setTitle("Add Player");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);

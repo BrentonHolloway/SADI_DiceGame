@@ -16,7 +16,7 @@ public class MainFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		
-		JPanel mainPanel = new MainPanel(gameEngine);
+		UIPanel mainPanel = new MainPanel(gameEngine);
 		JMenuBar menu = new MainMenuBar(gameEngine, mainPanel);
 		JPanel status = new StatusBar();
 		
