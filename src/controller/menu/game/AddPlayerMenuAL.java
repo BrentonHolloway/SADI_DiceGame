@@ -7,15 +7,15 @@ import javax.swing.JDialog;
 
 import model.interfaces.GameEngine;
 import view.AddPlayerDialog;
-import view.UIPanel;
+import view.MainPanel;
 
 
 public class AddPlayerMenuAL implements ActionListener {
 	
 	GameEngine gameEngine;
-	UIPanel mp;
+	MainPanel mp;
 
-	public AddPlayerMenuAL(GameEngine gameEngine, UIPanel mp) {
+	public AddPlayerMenuAL(GameEngine gameEngine, MainPanel mp) {
 		this.gameEngine = gameEngine;
 		this.mp = mp;
 	}

@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.JDialog;
 
+import model.interfaces.GameEngine;
 import model.interfaces.Player;
 
 import javax.swing.JComboBox;
@@ -17,7 +18,7 @@ import javax.swing.Box;
 public class RemovePlayer extends JDialog {
 	private static final long serialVersionUID = -1050677024189306384L;
 	
-	public RemovePlayer() {
+	public RemovePlayer(GameEngine gameEngine) {
 		setTitle("Remove Player");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -73,6 +74,7 @@ public class RemovePlayer extends JDialog {
 		gbc_cancel.insets = new Insets(0, 0, 5, 5);
 		gbc_cancel.gridx = 1;
 		gbc_cancel.gridy = 3;
+		cancel.addActionListener(new controller.game.CancelDialogAL(this));
 		add(cancel, gbc_cancel);
 		
 		JButton removePlayer = new JButton("Remove");

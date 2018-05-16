@@ -11,7 +11,7 @@ import model.interfaces.GameEngine;
 
 public class MainMenuBar extends JMenuBar {
 	private static final long serialVersionUID = 4050748458020858696L;
-	public MainMenuBar(GameEngine gameEngine, UIPanel mainPanel) {
+	public MainMenuBar(GameEngine gameEngine, MainPanel mainPanel) {
 		JMenu file = new JMenu("File");
 		JMenu game = new JMenu("Game");
 		JMenu help = new JMenu("Help");
@@ -32,8 +32,8 @@ public class MainMenuBar extends JMenuBar {
 		quit.addActionListener(new QuitMenuAL());
 		
 		addPlayer.addActionListener(new AddPlayerMenuAL(gameEngine, mainPanel));
-		updatePlayer.addActionListener(new UpdatePlayerAL());
-		removePlayer.addActionListener(new RemovePlayerAL());
+		updatePlayer.addActionListener(new UpdatePlayerMenuAL(gameEngine));
+		removePlayer.addActionListener(new RemovePlayerMenuAL(gameEngine));
 		
 		
 		file.add(save);

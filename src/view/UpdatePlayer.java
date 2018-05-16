@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
-import model.SimplePlayer;
+import model.interfaces.GameEngine;
 import model.interfaces.Player;
 
 import java.awt.BorderLayout;
@@ -21,7 +21,10 @@ import java.awt.Insets;
 public class UpdatePlayer extends JDialog {
 	private static final long serialVersionUID = 2346069702958679341L;
 	
-	public UpdatePlayer() {
+	private GameEngine gameEngine;
+	
+	public UpdatePlayer(GameEngine gameEngine) {
+		this.gameEngine = gameEngine;
 		setTitle("Update Player");
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -30,8 +33,9 @@ public class UpdatePlayer extends JDialog {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.LEFT);
 		add(tabbedPane, BorderLayout.CENTER);
 		
-		addTab(tabbedPane, new SimplePlayer("1", "Jane Doe", 18));
-		addTab(tabbedPane, new SimplePlayer("1", "John Smith", 18));
+		for(Player p: gameEngine.getAllPlayers()) {
+			addTab(tabbedPane, p);
+		}
 		pack();
 	}
 	
@@ -133,6 +137,7 @@ public class UpdatePlayer extends JDialog {
 		//Buttons
 		JButton btnCancel = new JButton("Cancel");
 		btnConstraint.gridx = 9;
+		btnCancel.addActionListener(new controller.game.CancelDialogAL(this));
 		p.add(btnCancel, btnConstraint);
 		
 		JButton btnAddPlayer = new JButton("Update Player");
