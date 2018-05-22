@@ -1,4 +1,4 @@
-package controller.menu.game;
+package controller.menu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -22,7 +22,7 @@ public class AddPlayerDialog extends JDialog {
 	private JTextField pointsTextInput;
 	private JTextField nameTextInput;
 	
-	public AddPlayerDialog(GameEngine gameEngine, MainPanel mp) {
+	public AddPlayerDialog(GameEngine gameEngine, MainPanel mp, MainMenuBar mmb) {
 		setTitle("Add Player");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -131,7 +131,7 @@ public class AddPlayerDialog extends JDialog {
 		
 		JButton btnAddPlayer = new JButton("Add Player");
 		btnConstraint.gridx = 10;
-		btnAddPlayer.addActionListener(new controller.game.AddPlayerAL(this, gameEngine, mp, nameTextInput, pointsTextInput));
+		btnAddPlayer.addActionListener(new controller.game.AddPlayerAL(this, gameEngine, mp, mmb, nameTextInput, pointsTextInput));
 		add(btnAddPlayer, btnConstraint);
 		
 		pack();

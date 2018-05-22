@@ -11,6 +11,7 @@ import model.SimplePlayer;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 import view.AddPlayerDialog;
+import view.MainMenuBar;
 import view.MainPanel;
 
 public class AddPlayerWorker extends SwingWorker<Void, Player> {
@@ -19,10 +20,12 @@ public class AddPlayerWorker extends SwingWorker<Void, Player> {
 	private JTextField playerName;
 	private JTextField points;
 	private Player p;
+	private MainMenuBar mmb;
 	
-	public AddPlayerWorker(GameEngine gameEngine, MainPanel ui, JTextField playerName, JTextField points) {
+	public AddPlayerWorker(GameEngine gameEngine, MainPanel ui, MainMenuBar mmb, JTextField playerName, JTextField points) {
 		this.gameEngine = gameEngine;
 		this.ui = ui;
+		this.mmb = mmb;
 		this.playerName = playerName;
 		this.points = points;
 	}
@@ -40,6 +43,7 @@ public class AddPlayerWorker extends SwingWorker<Void, Player> {
 		try {
 			get();
 			ui.update();
+			mmb.update();
 		}catch (ExecutionException | InterruptedException e) {
 			JOptionPane.showMessageDialog(null, "Points Not A Number\n" + e.getMessage(), "Not A Number", JOptionPane.ERROR_MESSAGE);
 		}

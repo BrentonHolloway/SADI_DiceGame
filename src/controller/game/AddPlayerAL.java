@@ -8,19 +8,17 @@ import javax.swing.JDialog;
 import javax.swing.JTextField;
 
 import model.interfaces.GameEngine;
+import view.MainMenuBar;
 import view.MainPanel;
 
 public class AddPlayerAL implements ActionListener {
-	
-	private GameEngine gameEngine;
 	private JDialog owner;
 	
 	private AddPlayerWorker task;
 	
-	public AddPlayerAL(JDialog owner, GameEngine gameEngine, MainPanel ui, JTextField playerName, JTextField points) {
-		this.gameEngine = gameEngine;
+	public AddPlayerAL(JDialog owner, GameEngine gameEngine, MainPanel ui, MainMenuBar mmb, JTextField playerName, JTextField points) {
 		this.owner = owner;
-		task = new AddPlayerWorker(gameEngine, ui, playerName, points);
+		task = new AddPlayerWorker(gameEngine, ui, mmb, playerName, points);
 	}
 
 	@Override

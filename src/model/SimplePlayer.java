@@ -75,4 +75,8 @@ public class SimplePlayer implements Player{
 		this.roll = rollResult;
 	}
 
+	@Override
+	public String toString() {
+		return this.playerId + " - " + this.name;
+	}
 }

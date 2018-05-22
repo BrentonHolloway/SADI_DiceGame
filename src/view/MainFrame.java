@@ -18,7 +18,7 @@ public class MainFrame extends JFrame {
 		
 		MainPanel mainPanel = new MainPanel(gameEngine);
 		JMenuBar menu = new MainMenuBar(gameEngine, mainPanel);
-		JPanel status = new StatusBar();
+		JPanel status = new StatusBar(gameEngine);
 		
 		
 		final GameEngineCallbackGUI gecbGUI = new GameEngineCallbackGUI();
@@ -28,9 +28,6 @@ public class MainFrame extends JFrame {
 				gameEngine.addGameEngineCallback(gecbGUI);
 			};
 		}.start();
-		
-		
-		
 		
 		add(menu, BorderLayout.NORTH);
 		add(mainPanel, BorderLayout.CENTER);
