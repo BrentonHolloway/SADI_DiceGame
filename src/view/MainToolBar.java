@@ -11,7 +11,7 @@ import model.interfaces.Player;
 public class MainToolBar extends JToolBar {
 	private static final long serialVersionUID = -4352341802466235417L;
 	
-	private JComboBox<String> players;
+	private JComboBox<Player> players;
 	private GameEngine gameEngine;
 	private JPanel mainPanel;
 	
@@ -21,7 +21,7 @@ public class MainToolBar extends JToolBar {
 		JButton roll = new JButton("Roll");
 		JButton pb = new JButton("Place Bet");
 		JButton houseRoll = new JButton("House Roll");
-		players = new JComboBox<String>();
+		players = new JComboBox<Player>();
 		
 		add(pb);
 		add(roll);
@@ -34,7 +34,7 @@ public class MainToolBar extends JToolBar {
 	public void updatePlayers() {
 		players.removeAllItems();
 		for(Player p : gameEngine.getAllPlayers()) {
-			players.addItem(p.toString());
+			players.addItem(p);
 		}
 	}
 }

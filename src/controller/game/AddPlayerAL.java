@@ -12,19 +12,31 @@ import view.MainMenuBar;
 import view.MainPanel;
 
 public class AddPlayerAL implements ActionListener {
-	private JDialog owner;
 	
 	private AddPlayerWorker task;
+	private JDialog owner;
+	private GameEngine gameEngine;
+	private MainPanel mp;
+	private MainMenuBar mmb;
+	private JTextField playerName;
+	private JTextField points;
 	
-	public AddPlayerAL(JDialog owner, GameEngine gameEngine, MainPanel ui, MainMenuBar mmb, JTextField playerName, JTextField points) {
+	
+	public AddPlayerAL(JDialog owner, GameEngine gameEngine, MainPanel mp, MainMenuBar mmb, JTextField playerName, JTextField points) {
 		this.owner = owner;
-		task = new AddPlayerWorker(gameEngine, ui, mmb, playerName, points);
+		this.gameEngine = gameEngine;
+		this.mp = mp;
+		this.mmb = mmb;
+		this.playerName = playerName;
+		this.points = points;
+		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-			task.execute();
-			owner.dispose();
+		task = new AddPlayerWorker(gameEngine, mp, mmb, playerName.getText(), Integer.parseInt(points.getText()));
+		task.execute();
+		owner.dispose();
 		
 	}
 }

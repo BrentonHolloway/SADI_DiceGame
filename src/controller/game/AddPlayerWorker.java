@@ -2,7 +2,6 @@ package controller.game;
 
 import java.util.concurrent.ExecutionException;
 
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
@@ -10,19 +9,19 @@ import javax.swing.SwingWorker;
 import model.SimplePlayer;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
-import view.AddPlayerDialog;
 import view.MainMenuBar;
 import view.MainPanel;
 
 public class AddPlayerWorker extends SwingWorker<Void, Player> {
 	private GameEngine gameEngine;
 	private MainPanel ui;
-	private JTextField playerName;
-	private JTextField points;
+	private String playerName;
+	private int points;
 	private Player p;
 	private MainMenuBar mmb;
+	private int id = 0;
 	
-	public AddPlayerWorker(GameEngine gameEngine, MainPanel ui, MainMenuBar mmb, JTextField playerName, JTextField points) {
+	public AddPlayerWorker(GameEngine gameEngine, MainPanel ui, MainMenuBar mmb, String playerName, int points) {
 		this.gameEngine = gameEngine;
 		this.ui = ui;
 		this.mmb = mmb;
@@ -32,7 +31,14 @@ public class AddPlayerWorker extends SwingWorker<Void, Player> {
 
 	@Override
 	protected Void doInBackground() throws Exception {
-		p = new SimplePlayer(String.valueOf(gameEngine.getAllPlayers().size()+1), playerName.getText(), Integer.parseInt(points.getText()));
+		for(Player p: gameEngine.getAllPlayers()) {
+			if(Integer.parseInt(p.getPlayerId()) > id) {
+				id = Integer.parseInt(p.getPlayerId());
+				System.out.println(id);
+			}
+		}
+		
+		p = new SimplePlayer(String.valueOf(id+1), playerName, points);
 		gameEngine.addPlayer(p);
 		
 		return null;

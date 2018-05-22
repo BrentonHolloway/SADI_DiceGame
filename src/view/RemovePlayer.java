@@ -2,6 +2,8 @@ package view;
 
 import javax.swing.JDialog;
 
+import controller.game.CancelDialogAL;
+import controller.game.RemovePlayerAL;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 
@@ -18,7 +20,7 @@ import javax.swing.Box;
 public class RemovePlayer extends JDialog {
 	private static final long serialVersionUID = -1050677024189306384L;
 	
-	public RemovePlayer(GameEngine gameEngine) {
+	public RemovePlayer(GameEngine gameEngine, MainPanel mp, MainMenuBar mmb) {
 		setTitle("Remove Player");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -65,6 +67,11 @@ public class RemovePlayer extends JDialog {
 		gbc_players.fill = GridBagConstraints.HORIZONTAL;
 		gbc_players.gridx = 1;
 		gbc_players.gridy = 1;
+		
+		for(Player p : gameEngine.getAllPlayers()) {
+			players.addItem(p);
+		}
+		
 		add(players, gbc_players);
 		
 		//Buttons
@@ -74,7 +81,7 @@ public class RemovePlayer extends JDialog {
 		gbc_cancel.insets = new Insets(0, 0, 5, 5);
 		gbc_cancel.gridx = 1;
 		gbc_cancel.gridy = 3;
-		cancel.addActionListener(new controller.game.CancelDialogAL(this));
+		cancel.addActionListener(new CancelDialogAL(this));
 		add(cancel, gbc_cancel);
 		
 		JButton removePlayer = new JButton("Remove");
@@ -82,6 +89,7 @@ public class RemovePlayer extends JDialog {
 		gbc_removePlayer.insets = new Insets(0, 0, 5, 5);
 		gbc_removePlayer.gridx = 2;
 		gbc_removePlayer.gridy = 3;
+		removePlayer.addActionListener(new RemovePlayerAL(this, gameEngine, mp, mmb, players));
 		add(removePlayer, gbc_removePlayer);
 			
 		pack();

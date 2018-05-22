@@ -144,7 +144,7 @@ public class UpdatePlayer extends JDialog {
 		btnConstraint.gridx = 10;
 		p.add(btnAddPlayer, btnConstraint);
 		
-		tabbedPane.add(player.getPlayerName(), p);
+		tabbedPane.add(player.toString(), p);
 	}
 
 }

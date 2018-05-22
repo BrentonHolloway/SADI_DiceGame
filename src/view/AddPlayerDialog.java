@@ -6,6 +6,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import controller.game.AddPlayerAL;
+import controller.game.CancelDialogAL;
 import model.interfaces.GameEngine;
 
 import java.awt.Component;
@@ -126,12 +128,12 @@ public class AddPlayerDialog extends JDialog {
 		//Buttons
 		JButton btnCancel = new JButton("Cancel");
 		btnConstraint.gridx = 9;
-		btnCancel.addActionListener(new controller.game.CancelDialogAL(this));
+		btnCancel.addActionListener(new CancelDialogAL(this));
 		add(btnCancel, btnConstraint);
 		
 		JButton btnAddPlayer = new JButton("Add Player");
 		btnConstraint.gridx = 10;
-		btnAddPlayer.addActionListener(new controller.game.AddPlayerAL(this, gameEngine, mp, mmb, nameTextInput, pointsTextInput));
+		btnAddPlayer.addActionListener(new AddPlayerAL(this, gameEngine, mp, mmb, nameTextInput, pointsTextInput));
 		add(btnAddPlayer, btnConstraint);
 		
 		pack();
