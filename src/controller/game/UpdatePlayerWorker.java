@@ -28,12 +28,9 @@ public class UpdatePlayerWorker extends SwingWorker<Void, Player> {
 
 	@Override
 	protected Void doInBackground() throws Exception {
-		for(Player p: ge.getAllPlayers()) {
-			if(p.equals(this.p)) {
-				p.setPlayerName(playerName);
-				p.setPoints(points);
-			}
-		}
+		Player pl = ge.getPlayer(p.getPlayerId());
+		pl.setPlayerName(playerName);
+		pl.setPoints(points);
 		return null;
 	}
 

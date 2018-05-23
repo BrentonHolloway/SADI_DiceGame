@@ -13,10 +13,10 @@ import controller.game.CancelDialogAL;
 
 public class Descriptor extends JDialog {
 	private static final long serialVersionUID = 383050409321781593L;
-	public Descriptor(String title, String description) {
+	public Descriptor(Component c, String title, String description) {
 		setTitle(title);
 		setLayout(new BorderLayout(0, 0));
-		setLocationRelativeTo(null);
+		setLocationRelativeTo(c);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setMinimumSize(new Dimension(500, 300));
 		

@@ -26,7 +26,8 @@ public class MainMenuBar extends JMenuBar {
 			+ "To Add players go to Game > Add Player and enter players name and the starting account balance";
 	
 	private String creditsTitle = "Credits";
-	private String creditsDescription = "I would like to acnoledge......";
+	private String creditsDescription = "Designed and Implemeted by:\n   Name: Brenton Holloway\n   SID: s2345302 \n\n"
+			+ "I would like to acnoledge......";
 	
 	public MainMenuBar(GameEngine gameEngine, MainPanel mainPanel) {
 		this.gameEngine = gameEngine;
@@ -58,8 +59,8 @@ public class MainMenuBar extends JMenuBar {
 		updatePlayer.addActionListener(new UpdatePlayerMenuAL(gameEngine, mainPanel));
 		removePlayer.addActionListener(new RemovePlayerMenuAL(gameEngine, mainPanel, this));
 		
-		howToPlay.addActionListener(new DescriptorAL(helpTitle, helpDescription));
-		credits.addActionListener(new DescriptorAL(creditsTitle, creditsDescription));
+		howToPlay.addActionListener(new DescriptorAL(mainPanel, helpTitle, helpDescription));
+		credits.addActionListener(new DescriptorAL(mainPanel, creditsTitle, creditsDescription));
 		
 		
 		file.add(save);

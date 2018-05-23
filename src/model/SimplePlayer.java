@@ -50,12 +50,20 @@ public class SimplePlayer implements Player{
 
 	@Override
 	public boolean placeBet(int bet) {
+		int oldBet = this.bet;
+		
+		if(this.bet > 0) {
+			this.points += this.bet;
+			this.bet = 0;
+		}
+		
 		if(bet >= 0 && bet <= points) {
 			this.points -= bet;
-			this.bet += bet;
+			this.bet = bet;
 			return true;
 		} else {
-			this.bet = 0;
+			this.points -= oldBet;
+			this.bet = oldBet;
 			return false;
 		}
 	}
