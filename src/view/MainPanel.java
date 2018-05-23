@@ -3,6 +3,8 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,17 +20,19 @@ public class MainPanel extends JPanel{
 	
 	private GameEngine gameEngine;
 	private MainToolBar tb;
-	private ArrayList<DicePanel> playerDice;
-	private DicePanel currDicePanel = null;
 	
-	public MainPanel(GameEngine gameEngine) {
-		this.gameEngine = gameEngine;
+	private DiceDisplay diceDisplay;
+	
+	public MainPanel(GameEngine ge) {
+		this.gameEngine = ge;
 		setLayout(new BorderLayout());
-		tb = new MainToolBar(gameEngine, this);
-		DicePanel dicePanel = new DicePanel();
+		
+		tb = new MainToolBar(ge, this);
+		diceDisplay = new DiceDisplay(ge);
+		
 		ScorePanel scorePanel = new ScorePanel();
 		
-		JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scorePanel, currDicePanel);
+		JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scorePanel, diceDisplay);
 		
 		add(tb, BorderLayout.NORTH);
 		add(sp, BorderLayout.CENTER);
@@ -39,11 +43,5 @@ public class MainPanel extends JPanel{
 
 	public void update() {
 		tb.updatePlayers();
-	}
-	
-	public void updatePlayers() {
-		for(Player p : gameEngine.getAllPlayers()) {
-			
-		}
 	}
 }
