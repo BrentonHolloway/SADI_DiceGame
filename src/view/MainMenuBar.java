@@ -55,7 +55,7 @@ public class MainMenuBar extends JMenuBar {
 		quit.addActionListener(new QuitMenuAL());
 		
 		addPlayer.addActionListener(new AddPlayerMenuAL(gameEngine, mainPanel, this));
-		updatePlayer.addActionListener(new UpdatePlayerMenuAL(gameEngine));
+		updatePlayer.addActionListener(new UpdatePlayerMenuAL(gameEngine, mainPanel));
 		removePlayer.addActionListener(new RemovePlayerMenuAL(gameEngine, mainPanel, this));
 		
 		howToPlay.addActionListener(new DescriptorAL(helpTitle, helpDescription));
