@@ -1,10 +1,11 @@
-package view;
+package view.player;
 
 import javax.swing.JDialog;
 import javax.swing.JTabbedPane;
 
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
+import view.MainPanel;
 
 import java.awt.BorderLayout;
 

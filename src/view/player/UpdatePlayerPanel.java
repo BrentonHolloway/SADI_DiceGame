@@ -1,4 +1,4 @@
-package view;
+package view.player;
 
 import java.awt.Component;
 import java.awt.GridBagConstraints;
@@ -17,6 +17,7 @@ import controller.game.CancelDialogAL;
 import controller.game.UpdatePlayerAL;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
+import view.MainPanel;
 
 public class UpdatePlayerPanel extends JPanel {
 	private static final long serialVersionUID = -3622222009184571507L;

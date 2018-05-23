@@ -1,31 +1,32 @@
-package view;
-
-import javax.swing.JDialog;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import controller.game.AddPlayerAL;
-import controller.game.CancelDialogAL;
-import model.interfaces.GameEngine;
+package view.player;
 
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Point;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
+import controller.game.BetAL;
+import controller.game.CancelDialogAL;
+import model.interfaces.GameEngine;
+import model.interfaces.Player;
+import view.MainPanel;
+import view.MainToolBar;
 
-public class AddPlayerDialog extends JDialog {
-	private static final long serialVersionUID = -1701323917859373346L;
-	private JTextField pointsTextInput;
-	private JTextField nameTextInput;
+public class BetDialog extends JDialog {
+	private static final long serialVersionUID = 3079190134366086480L;
 	
-	public AddPlayerDialog(GameEngine gameEngine, MainPanel mp, MainMenuBar mmb) {
-		setTitle("Add Player");
+	private JTextField pointsTextInput;
+
+	public BetDialog(GameEngine ge, MainPanel mp, MainToolBar mtb, Player p) {
+		setTitle("Place/Update Bet");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(mp);
 		setLayout(new GridBagLayout());
@@ -100,27 +101,27 @@ public class AddPlayerDialog extends JDialog {
 		add(lblImage, imageConstraint);
 		
 		//Name Label
-		JLabel nameLabel = new JLabel("Name:");
+		JLabel nameLabel = new JLabel("Current Bet:");
 		labelConstraint.gridx = 7;
 		labelConstraint.gridy = 2;
 		add(nameLabel, labelConstraint);
 		
 		//Account Balance Label
-		JLabel AccountBLabel = new JLabel("Account Balance:");
+		JLabel AccountBLabel = new JLabel("Place/Change Bet:");
 		labelConstraint.gridx = 7;
 		labelConstraint.gridy = 3;
 		add(AccountBLabel, labelConstraint);
 		
 		//Text Input for name
-		nameTextInput = new JTextField();
-		nameTextInput.setText("Full Name");
-		nameTextInput.setToolTipText("Enter Players Full Name");
+		JLabel currentBet = new JLabel();
+		currentBet.setText(String.valueOf(p.getBet()));
+		currentBet.setToolTipText("Players Current Bet");
 		inputConstraint.gridy = 2;
-		add(nameTextInput, inputConstraint);
+		add(currentBet, inputConstraint);
 		
 		//Text Input for Points
 		pointsTextInput = new JTextField();
-		pointsTextInput.setText("Points");
+		pointsTextInput.setText(String.valueOf(p.getBet()));
 		pointsTextInput.setToolTipText("Enter Points for Player");
 		inputConstraint.gridy = 3;
 		add(pointsTextInput, inputConstraint);
@@ -131,9 +132,9 @@ public class AddPlayerDialog extends JDialog {
 		btnCancel.addActionListener(new CancelDialogAL(this));
 		add(btnCancel, btnConstraint);
 		
-		JButton btnAddPlayer = new JButton("Add Player");
+		JButton btnAddPlayer = new JButton("Place Bet");
 		btnConstraint.gridx = 10;
-		btnAddPlayer.addActionListener(new AddPlayerAL(this, gameEngine, mp, mmb, nameTextInput, pointsTextInput));
+		btnAddPlayer.addActionListener(new BetAL(this, ge, mp, mtb, p, pointsTextInput));
 		add(btnAddPlayer, btnConstraint);
 		
 		pack();

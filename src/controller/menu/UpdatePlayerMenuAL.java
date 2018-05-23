@@ -7,7 +7,7 @@ import javax.swing.JDialog;
 
 import model.interfaces.GameEngine;
 import view.MainPanel;
-import view.UpdatePlayer;
+import view.player.UpdatePlayer;
 
 public class UpdatePlayerMenuAL implements ActionListener{
 	

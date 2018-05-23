@@ -1,4 +1,4 @@
-package view;
+package view.dice_board;
 
 import java.awt.Color;
 

@@ -14,6 +14,8 @@ import javax.swing.SwingUtilities;
 
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
+import view.dice_board.DiceDisplay;
+import view.score_board.ScorePanel;
 
 public class MainPanel extends JPanel{
 	private static final long serialVersionUID = -8170814423728632014L;

@@ -6,9 +6,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JDialog;
 
 import model.interfaces.GameEngine;
-import view.AddPlayerDialog;
 import view.MainMenuBar;
 import view.MainPanel;
+import view.player.AddPlayerDialog;
 
 
 public class AddPlayerMenuAL implements ActionListener {

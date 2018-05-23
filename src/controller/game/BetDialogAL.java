@@ -8,9 +8,9 @@ import javax.swing.JDialog;
 
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
-import view.BetDialog;
 import view.MainPanel;
 import view.MainToolBar;
+import view.player.BetDialog;
 
 public class BetDialogAL implements ActionListener {
 	

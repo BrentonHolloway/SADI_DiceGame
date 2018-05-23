@@ -8,7 +8,7 @@ import javax.swing.JDialog;
 import model.interfaces.GameEngine;
 import view.MainMenuBar;
 import view.MainPanel;
-import view.RemovePlayer;
+import view.player.RemovePlayer;
 
 public class RemovePlayerMenuAL implements ActionListener {
 	

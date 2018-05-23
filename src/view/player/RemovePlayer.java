@@ -1,4 +1,4 @@
-package view;
+package view.player;
 
 import javax.swing.JDialog;
 
@@ -6,6 +6,8 @@ import controller.game.CancelDialogAL;
 import controller.game.RemovePlayerAL;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
+import view.MainMenuBar;
+import view.MainPanel;
 
 import javax.swing.JComboBox;
 import javax.swing.JButton;
