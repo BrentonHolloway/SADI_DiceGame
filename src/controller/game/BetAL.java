@@ -9,22 +9,22 @@ import javax.swing.SwingWorker;
 
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
-import view.MainPanel;
 import view.MainToolBar;
+import view.score_board.ScorePanel;
 
 public class BetAL implements ActionListener{
 	
 	private SwingWorker<Void, Player> task;
 	private GameEngine ge;
-	private MainPanel mp;
+	private ScorePanel sp;
 	private MainToolBar mtb;
 	private Player p;
 	private JDialog owner;
 	private JTextField bet;
 	
-	public BetAL(JDialog owner, GameEngine ge, MainPanel mp, MainToolBar mtb, Player p, JTextField bet) {
+	public BetAL(JDialog owner, GameEngine ge, MainToolBar mtb, ScorePanel sp, Player p, JTextField bet) {
 		this.ge = ge;
-		this.mp = mp;
+		this.sp = sp;
 		this.mtb = mtb;
 		this.p = p;
 		this.owner = owner;
@@ -33,7 +33,7 @@ public class BetAL implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		task = new BetWorker(ge, mtb, p, Integer.parseInt(bet.getText()));
+		task = new BetWorker(ge, mtb, sp, p, Integer.parseInt(bet.getText()));
 		task.execute();
 		owner.dispose();
 	}

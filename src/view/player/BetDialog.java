@@ -4,7 +4,6 @@ import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Point;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -19,13 +18,14 @@ import model.interfaces.GameEngine;
 import model.interfaces.Player;
 import view.MainPanel;
 import view.MainToolBar;
+import view.score_board.ScorePanel;
 
 public class BetDialog extends JDialog {
 	private static final long serialVersionUID = 3079190134366086480L;
 	
 	private JTextField pointsTextInput;
 
-	public BetDialog(GameEngine ge, MainPanel mp, MainToolBar mtb, Player p) {
+	public BetDialog(GameEngine ge, MainPanel mp, MainToolBar mtb, ScorePanel sp, Player p) {
 		setTitle("Place/Update Bet");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(mp);
@@ -134,7 +134,7 @@ public class BetDialog extends JDialog {
 		
 		JButton btnAddPlayer = new JButton("Place Bet");
 		btnConstraint.gridx = 10;
-		btnAddPlayer.addActionListener(new BetAL(this, ge, mp, mtb, p, pointsTextInput));
+		btnAddPlayer.addActionListener(new BetAL(this, ge, mtb, sp, p, pointsTextInput));
 		add(btnAddPlayer, btnConstraint);
 		
 		pack();

@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import model.interfaces.GameEngine;
 import view.MainMenuBar;
 import view.MainPanel;
+import view.dice_board.DiceDisplay;
 
 public class AddPlayerAL implements ActionListener {
 	

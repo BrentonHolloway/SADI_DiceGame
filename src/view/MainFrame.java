@@ -21,7 +21,7 @@ public class MainFrame extends JFrame {
 		JPanel status = new StatusBar(gameEngine);
 		
 		
-		final GameEngineCallbackGUI gecbGUI = new GameEngineCallbackGUI();
+		final GameEngineCallbackGUI gecbGUI = new GameEngineCallbackGUI(mainPanel);
 		new Thread() {
 			@Override
 			public void run() {

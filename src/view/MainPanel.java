@@ -1,16 +1,9 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
-import javax.swing.JToolBar;
-import javax.swing.SwingUtilities;
 
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
@@ -20,19 +13,19 @@ import view.score_board.ScorePanel;
 public class MainPanel extends JPanel{
 	private static final long serialVersionUID = -8170814423728632014L;
 	
-	private GameEngine gameEngine;
 	private MainToolBar tb;
 	
 	private DiceDisplay diceDisplay;
+	ScorePanel scorePanel;
 	
 	public MainPanel(GameEngine ge) {
-		this.gameEngine = ge;
 		setLayout(new BorderLayout());
 		
-		tb = new MainToolBar(ge, this);
+		
 		diceDisplay = new DiceDisplay(ge);
 		
-		ScorePanel scorePanel = new ScorePanel();
+		scorePanel = new ScorePanel(ge);
+		tb = new MainToolBar(ge, this, diceDisplay, scorePanel);
 		
 		JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scorePanel, diceDisplay);
 		
@@ -45,5 +38,23 @@ public class MainPanel extends JPanel{
 
 	public void update() {
 		tb.updatePlayers();
+		scorePanel.update();
+		diceDisplay.updateDiceBoard();
+	}
+	
+	public void updateInterPlayerRoll(Player p, int dice1, int dice2) {
+		diceDisplay.updateDicePanel(p, String.valueOf(dice1), String.valueOf(dice2));
+	}
+	
+	public void updateFinalPlayerRoll(Player p, int dice1, int dice2) {
+		diceDisplay.updateDicePanel(p, String.valueOf(dice1), String.valueOf(dice2));
+	}
+	
+	public void updateInterHouseRoll(int dice1, int dice2) {
+		diceDisplay.updateHouseDicePanel(String.valueOf(dice1), String.valueOf(dice2));
+	}
+	
+	public void updateFinalHouseRoll(int dice1, int dice2) {
+		diceDisplay.updateHouseDicePanel(String.valueOf(dice1), String.valueOf(dice2));
 	}
 }

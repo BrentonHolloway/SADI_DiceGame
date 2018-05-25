@@ -43,30 +43,35 @@ public class GameEngineImpl implements GameEngine{
 	public void rollPlayer(Player player, int initialDelay, int finalDelay, int delayIncrement) {
 		DicePair dice = null;
 		int initDel = initialDelay;
-		
-		if(!players.containsValue(player))
-			return;
-		
-		if(player.getBet() > 0) {
-			//intermediate dice rolls for the player
-			while(initDel < finalDelay) {
+		try {
+			if(!players.containsValue(player))
+				return;
+			
+			if(player.getBet() > 0) {
+				//intermediate dice rolls for the player
+				while(initDel < finalDelay) {
+					dice = new DicePairImpl(roll(NUM_FACES),roll(NUM_FACES),NUM_FACES);
+					
+					for(GameEngineCallback gecb: gameEngineCallbacks) {
+						gecb.intermediateResult(player, dice, this);
+					}
+					
+					Thread.sleep(initDel);
+					initDel += delayIncrement;
+				}
+				
+				//final dice roll
+				Thread.sleep(initDel);
 				dice = new DicePairImpl(roll(NUM_FACES),roll(NUM_FACES),NUM_FACES);
 				
 				for(GameEngineCallback gecb: gameEngineCallbacks) {
-					gecb.intermediateResult(player, dice, this);
+					gecb.result(player, dice, this);
 				}
 				
-				initDel += delayIncrement;
+				player.setRollResult(dice);
 			}
-			
-			//final dice roll
-			dice = new DicePairImpl(roll(NUM_FACES),roll(NUM_FACES),NUM_FACES);
-			
-			for(GameEngineCallback gecb: gameEngineCallbacks) {
-				gecb.result(player, dice, this);
-			}
-			
-			player.setRollResult(dice);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -74,43 +79,48 @@ public class GameEngineImpl implements GameEngine{
 	public void rollHouse(int initialDelay, int finalDelay, int delayIncrement) {
 		DicePair dice = null;
 		int initDel = initialDelay;
-		
-		//intermediate dice rolls for the house
-		while(initDel < finalDelay) {
+		try {
+			//intermediate dice rolls for the house
+			while(initDel < finalDelay) {
+				dice = new DicePairImpl(roll(NUM_FACES),roll(NUM_FACES),NUM_FACES);
+				
+				for(GameEngineCallback gecb: gameEngineCallbacks) {
+					gecb.intermediateHouseResult(dice, this);
+				}
+				
+				Thread.sleep(initDel);
+				initDel += delayIncrement;
+			}
+			
+			//final dice roll
+			Thread.sleep(initDel);
 			dice = new DicePairImpl(roll(NUM_FACES),roll(NUM_FACES),NUM_FACES);
 			
 			for(GameEngineCallback gecb: gameEngineCallbacks) {
-				gecb.intermediateHouseResult(dice, this);
+				gecb.houseResult(dice, this);
 			}
 			
-			initDel += delayIncrement;
-		}
-		
-		//final dice roll
-		dice = new DicePairImpl(roll(NUM_FACES),roll(NUM_FACES),NUM_FACES);
-		
-		for(GameEngineCallback gecb: gameEngineCallbacks) {
-			gecb.houseResult(dice, this);
-		}
-		
-		//update plays points
-		for(Player p : players.values()) {
-			if(p.getBet() > 0) {
-				if((p.getRollResult().getDice1() + p.getRollResult().getDice2()) > (dice.getDice1() + dice.getDice2())) {
-					//player wins 2* their bet
-					p.setPoints(p.getPoints()+2*p.getBet());
-					//set bet to zero again
-					p.placeBet(0);
-				}else if((p.getRollResult().getDice1() + p.getRollResult().getDice2()) == (dice.getDice1() + dice.getDice2())){
-					//player has their bet amount returned
-					p.setPoints(p.getPoints()+p.getBet());
-					//set bet to zero
-					p.placeBet(0);
-				}else {
-					//player looses bet
-					p.placeBet(0);
+			//update plays points
+			for(Player p : players.values()) {
+				if(p.getBet() > 0) {
+					if((p.getRollResult().getDice1() + p.getRollResult().getDice2()) > (dice.getDice1() + dice.getDice2())) {
+						//player wins 2* their bet
+						p.setPoints(p.getPoints()+2*p.getBet());
+						//set bet to zero again
+						p.placeBet(0);
+					}else if((p.getRollResult().getDice1() + p.getRollResult().getDice2()) == (dice.getDice1() + dice.getDice2())){
+						//player has their bet amount returned
+						p.setPoints(p.getPoints()+p.getBet());
+						//set bet to zero
+						p.placeBet(0);
+					}else {
+						//player looses bet
+						p.placeBet(0);
+					}
 				}
 			}
+		}  catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 

@@ -124,8 +124,6 @@ public class UpdatePlayerPanel extends JPanel {
 		
 		JButton btnAddPlayer = new JButton("Update Player");
 		btnConstraint.gridx = 10;
-		System.out.println(nameTextInput.getText());
-		System.out.println(pointsTextInput.getText());
 		btnAddPlayer.addActionListener(new UpdatePlayerAL(jd, gameEngine, mp, player, nameTextInput, pointsTextInput));
 		add(btnAddPlayer, btnConstraint);
 	}
