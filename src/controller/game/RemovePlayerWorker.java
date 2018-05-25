@@ -35,6 +35,7 @@ public class RemovePlayerWorker extends SwingWorker<Void, Player> {
 		try {
 			get();
 			mp.update();
+			mp.removeDisplay(p);
 			mmb.update();
 		}catch (ExecutionException | InterruptedException e) {
 			JOptionPane.showMessageDialog(null, "There was a problem removing player: " + p.getPlayerName()+ "\n" + e.getMessage(), "Not A Number", JOptionPane.ERROR_MESSAGE);

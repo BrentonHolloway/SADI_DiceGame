@@ -39,7 +39,14 @@ public class MainPanel extends JPanel{
 	public void update() {
 		tb.updatePlayers();
 		scorePanel.update();
-		diceDisplay.updateDiceBoard();
+	}
+	
+	public void addDisplay(Player p) {
+		diceDisplay.addDiceBoard(p);
+	}
+	
+	public void removeDisplay(Player p) {
+		diceDisplay.removeDiceBoard(p);
 	}
 	
 	public void updateInterPlayerRoll(Player p, int dice1, int dice2) {
@@ -48,6 +55,7 @@ public class MainPanel extends JPanel{
 	
 	public void updateFinalPlayerRoll(Player p, int dice1, int dice2) {
 		diceDisplay.updateDicePanel(p, String.valueOf(dice1), String.valueOf(dice2));
+		scorePanel.update();
 	}
 	
 	public void updateInterHouseRoll(int dice1, int dice2) {
@@ -56,5 +64,6 @@ public class MainPanel extends JPanel{
 	
 	public void updateFinalHouseRoll(int dice1, int dice2) {
 		diceDisplay.updateHouseDicePanel(String.valueOf(dice1), String.valueOf(dice2));
+		scorePanel.update();
 	}
 }
