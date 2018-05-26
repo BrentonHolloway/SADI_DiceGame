@@ -7,7 +7,6 @@ import javax.swing.SwingWorker;
 
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
-import view.MainMenuBar;
 import view.MainPanel;
 
 public class UpdatePlayerWorker extends SwingWorker<Void, Player> {

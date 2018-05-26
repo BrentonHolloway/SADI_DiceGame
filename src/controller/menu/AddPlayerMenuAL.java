@@ -8,7 +8,6 @@ import javax.swing.JDialog;
 import model.interfaces.GameEngine;
 import view.MainMenuBar;
 import view.MainPanel;
-import view.dice_board.DiceDisplay;
 import view.player.AddPlayerDialog;
 
 

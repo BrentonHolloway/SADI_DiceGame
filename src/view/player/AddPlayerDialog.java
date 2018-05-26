@@ -3,7 +3,6 @@ package view.player;
 import javax.swing.JDialog;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controller.game.AddPlayerAL;
@@ -11,7 +10,6 @@ import controller.game.CancelDialogAL;
 import model.interfaces.GameEngine;
 import view.MainMenuBar;
 import view.MainPanel;
-import view.dice_board.DiceDisplay;
 
 import java.awt.Component;
 import java.awt.GridBagConstraints;

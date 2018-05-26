@@ -8,11 +8,11 @@ import model.interfaces.GameEngine;
 import model.interfaces.Player;
 
 import javax.swing.JLabel;
+import javax.swing.BoxLayout;
 
-import java.util.ArrayList;
 import java.util.Vector;
 
-import javax.swing.BoxLayout;
+
 
 public class ScorePanel extends JPanel {
 	private static final long serialVersionUID = -6690581566092366602L;

@@ -10,7 +10,6 @@ import model.interfaces.GameEngine;
 import model.interfaces.Player;
 import view.MainMenuBar;
 import view.MainPanel;
-import view.dice_board.DiceDisplay;
 
 public class AddPlayerWorker extends SwingWorker<Void, Player> {
 	private GameEngine gameEngine;

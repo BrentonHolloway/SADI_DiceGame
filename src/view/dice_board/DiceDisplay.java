@@ -8,8 +8,6 @@ import java.util.Map;
 
 import javax.swing.JPanel;
 
-import com.sun.management.jmx.Trace;
-
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 
