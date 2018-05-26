@@ -7,6 +7,7 @@ import javax.swing.JToolBar;
 import controller.game.BetDialogAL;
 import controller.game.ChangePlayerAL;
 import controller.game.RollAL;
+import controller.game.RollHouseAL;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 import view.dice_board.DiceDisplay;
@@ -33,6 +34,7 @@ public class MainToolBar extends JToolBar {
 		pb.addActionListener(new BetDialogAL(ge, mp, this, sp, players));
 		roll.addActionListener(new RollAL(ge, players));
 		players.addActionListener(new ChangePlayerAL(dd, players));
+		houseRoll.addActionListener(new RollHouseAL(ge, dd));
 		
 		add(pb);
 		add(roll);
@@ -58,10 +60,6 @@ public class MainToolBar extends JToolBar {
 			pb.setEnabled(true);
 			houseRoll.setEnabled(true);
 			players.setEnabled(true);
-		}
-		
-		if(players.getSelectedItem() != null) {
-			dd.showDicePanel((Player) players.getSelectedItem());
 		}
 	}
 }

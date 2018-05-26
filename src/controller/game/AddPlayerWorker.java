@@ -47,8 +47,9 @@ public class AddPlayerWorker extends SwingWorker<Void, Player> {
 	protected void done() {
 		try {
 			get();
-			mp.update();
 			mp.addDisplay(p);
+			mp.update();
+			
 			mmb.update();
 		}catch (ExecutionException | InterruptedException e) {
 			JOptionPane.showMessageDialog(null, "Points Not A Number\n" + e.getMessage(), "Not A Number", JOptionPane.ERROR_MESSAGE);

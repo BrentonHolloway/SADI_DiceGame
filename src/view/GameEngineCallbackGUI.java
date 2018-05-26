@@ -20,7 +20,7 @@ public class GameEngineCallbackGUI implements GameEngineCallback{
 		new Thread() {
 			@Override
 			public void run() {
-				mp.updateInterPlayerRoll(p, dp.getDice1(), dp.getDice2());
+				mp.updateInterRoll(p.toString(), dp.getDice1(), dp.getDice2());
 			};
 		}.start();
 	}
@@ -32,7 +32,7 @@ public class GameEngineCallbackGUI implements GameEngineCallback{
 		new Thread() {
 			@Override
 			public void run() {
-				mp.updateFinalPlayerRoll(p, r.getDice1(), r.getDice2());
+				mp.updateFinalRoll(p.toString(), r.getDice1(), r.getDice2());
 			};
 		}.start();
 	}
@@ -43,7 +43,7 @@ public class GameEngineCallbackGUI implements GameEngineCallback{
 		new Thread() {
 			@Override
 			public void run() {
-				mp.updateInterHouseRoll(dp.getDice1(), dp.getDice2());
+				mp.updateInterRoll("House", dp.getDice1(), dp.getDice2());
 			};
 		}.start();
 	}
@@ -54,7 +54,7 @@ public class GameEngineCallbackGUI implements GameEngineCallback{
 		new Thread() {
 			@Override
 			public void run() {
-				mp.updateFinalHouseRoll(r.getDice1(), r.getDice2());
+				mp.updateFinalRoll("House", r.getDice1(), r.getDice2());
 			};
 		}.start();
 	}

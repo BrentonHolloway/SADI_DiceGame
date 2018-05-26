@@ -21,7 +21,7 @@ public class ChangePlayerAL implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(players.getSelectedIndex() != -1) {
-			dd.showDicePanel((Player) players.getSelectedItem()); 
+			dd.showDicePanel(((Player) players.getSelectedItem()).toString()); 
 		}
 	}
 

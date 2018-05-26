@@ -8,64 +8,55 @@ import java.util.Map;
 
 import javax.swing.JPanel;
 
+import com.sun.management.jmx.Trace;
+
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 
 public class DiceDisplay extends JPanel {
 	private static final long serialVersionUID = -2016345827366227570L;
 	private GameEngine ge;
-	private Map<Player, DiceBoard> playerDice;
-	JPanel cards;
+	private Map<String, DicePanel> playerDice;
+	private JPanel cards;
 	
 	public DiceDisplay(GameEngine ge) {
 		this.ge = ge;
 		setLayout(new GridLayout(1, 1));
 		setBackground(Color.WHITE);
-		playerDice = new HashMap<Player, DiceBoard>();
-		
+		playerDice = new HashMap<String, DicePanel>();
 		
 		cards = new JPanel(new CardLayout());
 		cards.setBackground(Color.WHITE);
 		
+		DicePanel db = new DicePanel(ge, "House");
+		playerDice.put("House", db);
+		cards.add("House", db);
+		
 		add(cards);
-	}
-	
-	public void updateDiceBoard() {
-		playerDice.clear();
-		cards.removeAll();
-		for(Player p : ge.getAllPlayers()) {
-			addDiceBoard(p);
-		}
+		cards.setVisible(false);
 	}
 	
 	public void addDiceBoard(Player p) {
-		DiceBoard db = new DiceBoard(ge, p);
-		playerDice.put(p, db);
+		DicePanel db = new DicePanel(ge, p.getPlayerName());
+		playerDice.put(p.toString(), db);
 		cards.add(p.toString(), db);
+		cards.setVisible(true);
 	}
 	
 	public void removeDiceBoard(Player p) {
-		cards.remove(playerDice.get(p));
-		playerDice.remove(p);
+		playerDice.remove(p.toString());
+		if(ge.getAllPlayers().size() < 1) {
+			cards.setVisible(false);
+		}
 	}
 	
-	public void showDicePanel(Player p) {
+	public void showDicePanel(String id) {
 		CardLayout c = (CardLayout)cards.getLayout();
-		c.show(cards, p.toString());
+		c.show(cards, id);
 	}
 	
-	public void updateDicePanel(Player p, String die1, String die2) {
-		playerDice.get(p).updateDice(die1, die2);
+	public void updateDicePanel(String id, String die1, String die2) {
+		playerDice.get(id).updateDice(die1, die2);
 	}
 	
-	public void showHouseDicePanel() {
-		DiceBoard db = new DiceBoard(ge, null);
-		db.setPlayerName("House");
-		playerDice.put(null, db);
-		cards.add("", db);
-	}
-	
-	public void updateHouseDicePanel(String die1, String die2) {
-		playerDice.get(null).updateDice(die1, die2);
-	}
 }
