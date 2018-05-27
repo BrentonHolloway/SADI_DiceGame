@@ -18,14 +18,14 @@ public class MainPanel extends JPanel{
 	private DiceDisplay diceDisplay;
 	private ScorePanel scorePanel;
 	
-	public MainPanel(GameEngine ge) {
+	public MainPanel(GameEngine ge, StatusBar sb) {
 		setLayout(new BorderLayout());
 		
 		
 		diceDisplay = new DiceDisplay(ge);
 		
 		scorePanel = new ScorePanel(ge, diceDisplay);
-		tb = new MainToolBar(ge, this, diceDisplay, scorePanel);
+		tb = new MainToolBar(ge, this, diceDisplay, scorePanel, sb);
 		
 		JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scorePanel, diceDisplay);
 		

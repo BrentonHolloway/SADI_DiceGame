@@ -25,7 +25,7 @@ public class MainToolBar extends JToolBar {
 	private JButton houseRoll;
 	private JButton newRound;
 	
-	public MainToolBar(GameEngine ge, MainPanel mp, DiceDisplay dd, ScorePanel sp) {
+	public MainToolBar(GameEngine ge, MainPanel mp, DiceDisplay dd, ScorePanel sp, StatusBar sb) {
 		this.ge = ge;
 		this.dd = dd;
 		roll = new JButton("Roll");
@@ -34,11 +34,11 @@ public class MainToolBar extends JToolBar {
 		players = new JComboBox<Player>();
 		newRound = new JButton("New Round");
 		
-		pb.addActionListener(new BetDialogAL(ge, mp, this, sp, players));
-		roll.addActionListener(new RollAL(ge, players, dd));
+		pb.addActionListener(new BetDialogAL(ge, mp, this, sp, sb, players));
+		roll.addActionListener(new RollAL(ge, players, dd, sb));
 		players.addActionListener(new ChangePlayerAL(dd, players));
-		houseRoll.addActionListener(new RollHouseAL(ge, dd, this));
-		newRound.addActionListener(new newRoundAL(ge, sp, dd, this));
+		houseRoll.addActionListener(new RollHouseAL(ge, dd, this, sb));
+		newRound.addActionListener(new newRoundAL(ge, sp, dd, this, sb));
 		
 		add(pb);
 		add(roll);

@@ -10,6 +10,7 @@ import controller.game.CancelDialogAL;
 import model.interfaces.GameEngine;
 import view.MainMenuBar;
 import view.MainPanel;
+import view.StatusBar;
 
 import java.awt.Component;
 import java.awt.GridBagConstraints;
@@ -25,7 +26,7 @@ public class AddPlayerDialog extends JDialog {
 	private JTextField pointsTextInput;
 	private JTextField nameTextInput;
 	
-	public AddPlayerDialog(GameEngine gameEngine, MainPanel mp, MainMenuBar mmb) {
+	public AddPlayerDialog(GameEngine gameEngine, MainPanel mp, MainMenuBar mmb, StatusBar sb) {
 		setTitle("Add Player");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(mp);
@@ -134,7 +135,7 @@ public class AddPlayerDialog extends JDialog {
 		
 		JButton btnAddPlayer = new JButton("Add Player");
 		btnConstraint.gridx = 10;
-		btnAddPlayer.addActionListener(new AddPlayerAL(this, gameEngine, mp, mmb, nameTextInput, pointsTextInput));
+		btnAddPlayer.addActionListener(new AddPlayerAL(this, gameEngine, mp, mmb, sb, nameTextInput, pointsTextInput));
 		add(btnAddPlayer, btnConstraint);
 		
 		pack();

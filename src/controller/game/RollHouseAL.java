@@ -9,19 +9,22 @@ import javax.swing.SwingWorker;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 import view.MainToolBar;
+import view.StatusBar;
 import view.dice_board.DiceDisplay;
 
 public class RollHouseAL implements ActionListener {
 	
-	private SwingWorker<Void, Player> task;
+	private SwingWorker<Void, String> task;
 	private GameEngine ge;
 	private DiceDisplay dd;
 	private MainToolBar mtb;
+	private StatusBar sb;
 	
-	public RollHouseAL(GameEngine ge, DiceDisplay dd, MainToolBar mtb) {
+	public RollHouseAL(GameEngine ge, DiceDisplay dd, MainToolBar mtb, StatusBar sb) {
 		this.ge = ge;
 		this.dd = dd;
 		this.mtb = mtb;
+		this.sb = sb;
 	}
 
 	@Override
@@ -30,7 +33,7 @@ public class RollHouseAL implements ActionListener {
 		if(cont == JOptionPane.YES_OPTION){
 			mtb.setEnabled(false);
 			mtb.setNewRound(true);
-			task = new RollHouseWorker(ge, dd);
+			task = new RollHouseWorker(ge, dd, sb);
 			task.execute();
 		}
 	}

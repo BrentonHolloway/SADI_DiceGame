@@ -18,11 +18,12 @@ import controller.game.UpdatePlayerAL;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 import view.MainPanel;
+import view.StatusBar;
 
 public class UpdatePlayerPanel extends JPanel {
 	private static final long serialVersionUID = -3622222009184571507L;
 
-	public UpdatePlayerPanel(JDialog jd, GameEngine gameEngine, MainPanel mp, Player player) {
+	public UpdatePlayerPanel(JDialog jd, GameEngine gameEngine, MainPanel mp, StatusBar sb, Player player) {
 		setLayout(new GridBagLayout());
 		
 		Insets inset = new Insets(0, 0, 5, 5); //adds padding
@@ -124,7 +125,7 @@ public class UpdatePlayerPanel extends JPanel {
 		
 		JButton btnAddPlayer = new JButton("Update Player");
 		btnConstraint.gridx = 10;
-		btnAddPlayer.addActionListener(new UpdatePlayerAL(jd, gameEngine, mp, player, nameTextInput, pointsTextInput));
+		btnAddPlayer.addActionListener(new UpdatePlayerAL(jd, gameEngine, mp, sb, player, nameTextInput, pointsTextInput));
 		add(btnAddPlayer, btnConstraint);
 	}
 }

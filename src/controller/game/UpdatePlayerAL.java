@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 import view.MainPanel;
+import view.StatusBar;
 
 public class UpdatePlayerAL implements ActionListener {
 	
@@ -16,15 +17,17 @@ public class UpdatePlayerAL implements ActionListener {
 	private GameEngine gameEngine;
 	private MainPanel mp;
 	private Player p;
+	private StatusBar sb;
 	private JTextField playerName;
 	private JTextField points;
 	private JDialog owner;
 	
-	public UpdatePlayerAL(JDialog owner, GameEngine gameEngine, MainPanel mp, Player p, JTextField playerName, JTextField points) {
+	public UpdatePlayerAL(JDialog owner, GameEngine gameEngine, MainPanel mp, StatusBar sb, Player p, JTextField playerName, JTextField points) {
 		this.owner = owner;
 		this.gameEngine = gameEngine;
 		this.mp = mp;
 		this.p = p;
+		this.sb = sb;
 		this.playerName = playerName;
 		this.points = points;
 		
@@ -32,7 +35,7 @@ public class UpdatePlayerAL implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		task = new UpdatePlayerWorker(gameEngine, mp, p, playerName.getText(), Integer.parseInt(points.getText()));
+		task = new UpdatePlayerWorker(gameEngine, mp, sb, p, playerName.getText(), Integer.parseInt(points.getText()));
 		task.execute();
 		owner.dispose();
 	}

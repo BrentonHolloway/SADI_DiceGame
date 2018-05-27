@@ -16,9 +16,10 @@ public class MainFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		
-		MainPanel mainPanel = new MainPanel(gameEngine);
-		JMenuBar menu = new MainMenuBar(gameEngine, mainPanel);
-		JPanel status = new StatusBar(gameEngine);
+		StatusBar status = new StatusBar(gameEngine);
+		MainPanel mainPanel = new MainPanel(gameEngine, status);
+		JMenuBar menu = new MainMenuBar(gameEngine, mainPanel, status);
+		
 		
 		
 		final GameEngineCallbackGUI gecbGUI = new GameEngineCallbackGUI(mainPanel);

@@ -29,7 +29,7 @@ public class MainMenuBar extends JMenuBar {
 	private String creditsDescription = "Designed and Implemeted by:\n   Name: Brenton Holloway\n   SID: s2345302 \n\n"
 			+ "I would like to acnoledge......";
 	
-	public MainMenuBar(GameEngine gameEngine, MainPanel mainPanel) {
+	public MainMenuBar(GameEngine gameEngine, MainPanel mainPanel, StatusBar sb) {
 		this.gameEngine = gameEngine;
 		
 		updateItems = new ArrayList<JMenuItem>();
@@ -55,9 +55,9 @@ public class MainMenuBar extends JMenuBar {
 		load.addActionListener(new LoadMenuAL());
 		quit.addActionListener(new QuitMenuAL());
 		
-		addPlayer.addActionListener(new AddPlayerMenuAL(gameEngine, mainPanel, this));
-		updatePlayer.addActionListener(new UpdatePlayerMenuAL(gameEngine, mainPanel));
-		removePlayer.addActionListener(new RemovePlayerMenuAL(gameEngine, mainPanel, this));
+		addPlayer.addActionListener(new AddPlayerMenuAL(gameEngine, mainPanel, this, sb));
+		updatePlayer.addActionListener(new UpdatePlayerMenuAL(gameEngine, mainPanel, sb));
+		removePlayer.addActionListener(new RemovePlayerMenuAL(gameEngine, mainPanel, this, sb));
 		
 		howToPlay.addActionListener(new DescriptorAL(mainPanel, helpTitle, helpDescription));
 		credits.addActionListener(new DescriptorAL(mainPanel, creditsTitle, creditsDescription));
