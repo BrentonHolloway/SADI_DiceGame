@@ -8,22 +8,19 @@ import javax.swing.SwingWorker;
 
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
-import view.MainToolBar;
 import view.StatusBar;
 import view.score_board.ScorePanel;
 
 public class BetWorker extends SwingWorker<Void, String> {
 	
 	private GameEngine ge;
-	private MainToolBar mtb;
 	private ScorePanel sp;
 	private StatusBar sb;
 	private Player p;
 	private int bet;
 	
-	public BetWorker(GameEngine ge, MainToolBar mtb, ScorePanel sp, StatusBar sb, Player p, int bet) {
+	public BetWorker(GameEngine ge, ScorePanel sp, StatusBar sb, Player p, int bet) {
 		this.ge = ge;
-		this.mtb = mtb;
 		this.sp = sp;
 		this.sb = sb;
 		this.p = p;

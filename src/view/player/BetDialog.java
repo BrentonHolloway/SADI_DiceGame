@@ -17,7 +17,6 @@ import controller.game.CancelDialogAL;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 import view.MainPanel;
-import view.MainToolBar;
 import view.StatusBar;
 import view.score_board.ScorePanel;
 
@@ -26,7 +25,7 @@ public class BetDialog extends JDialog {
 	
 	private JTextField pointsTextInput;
 
-	public BetDialog(GameEngine ge, MainPanel mp, MainToolBar mtb, ScorePanel sp, StatusBar sb, Player p) {
+	public BetDialog(GameEngine ge, MainPanel mp, ScorePanel sp, StatusBar sb, Player p) {
 		setTitle("Place/Update Bet");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(mp);
@@ -135,7 +134,7 @@ public class BetDialog extends JDialog {
 		
 		JButton btnAddPlayer = new JButton("Place Bet");
 		btnConstraint.gridx = 10;
-		btnAddPlayer.addActionListener(new BetAL(this, ge, mtb, sp, sb, p, pointsTextInput));
+		btnAddPlayer.addActionListener(new BetAL(this, ge, sp, sb, p, pointsTextInput));
 		add(btnAddPlayer, btnConstraint);
 		
 		pack();

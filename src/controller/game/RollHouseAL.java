@@ -7,7 +7,6 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
 import model.interfaces.GameEngine;
-import model.interfaces.Player;
 import view.MainToolBar;
 import view.StatusBar;
 import view.dice_board.DiceDisplay;
