@@ -8,36 +8,26 @@ import javax.swing.SwingWorker;
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
 import view.dice_board.DiceDisplay;
+import view.score_board.ScorePanel;
 
-public class RollHouseWorker extends SwingWorker<Void, Player> {
+public class newRoundWorker extends SwingWorker<Void, Player> {
 	
 	private GameEngine ge;
+	private ScorePanel sp;
 	private DiceDisplay dd;
-	private boolean oneRolled;
 	
-	public RollHouseWorker(GameEngine ge, DiceDisplay dd) {
+	public newRoundWorker(GameEngine ge, ScorePanel sp, DiceDisplay dd) {
 		this.ge = ge;
+		this.sp = sp;
 		this.dd = dd;
 	}
 
 	@Override
 	protected Void doInBackground() throws Exception {
-		oneRolled = false;
-		
 		for(Player p : ge.getAllPlayers()) {
-			if(p.getRollResult() != null) {
-				oneRolled = true;
-				break;
-			}
+			p.setRollResult(null);
+			p.placeBet(0);
 		}
-		
-		if(oneRolled) {
-			dd.showDicePanel("House");
-			ge.rollHouse(0, 1000, 100);
-		}else {
-			throw new Exception("No Players have rolled");
-		}
-		
 		return null;
 	}
 	
@@ -45,9 +35,12 @@ public class RollHouseWorker extends SwingWorker<Void, Player> {
 	protected void done() {
 		try {
 			get();
+			sp.update();
+			for(Player p : ge.getAllPlayers()) {
+				dd.updateDicePanel(p.toString(), "-", "-");
+			}
 		}catch (ExecutionException | InterruptedException e) {
 			JOptionPane.showMessageDialog(null, "Error\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
 }

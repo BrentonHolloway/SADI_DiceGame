@@ -16,7 +16,7 @@ public class MainPanel extends JPanel{
 	private MainToolBar tb;
 	
 	private DiceDisplay diceDisplay;
-	ScorePanel scorePanel;
+	private ScorePanel scorePanel;
 	
 	public MainPanel(GameEngine ge) {
 		setLayout(new BorderLayout());
@@ -24,7 +24,7 @@ public class MainPanel extends JPanel{
 		
 		diceDisplay = new DiceDisplay(ge);
 		
-		scorePanel = new ScorePanel(ge);
+		scorePanel = new ScorePanel(ge, diceDisplay);
 		tb = new MainToolBar(ge, this, diceDisplay, scorePanel);
 		
 		JSplitPane sp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scorePanel, diceDisplay);
@@ -56,5 +56,14 @@ public class MainPanel extends JPanel{
 	public void updateFinalRoll(String id, int dice1, int dice2) {
 		diceDisplay.updateDicePanel(id, String.valueOf(dice1), String.valueOf(dice2));
 		scorePanel.update();
+	}
+	
+	public void updateHouseFinalRoll(String id, int dice1, int dice2) {
+		diceDisplay.updateDicePanel(id, String.valueOf(dice1), String.valueOf(dice2));
+		scorePanel.finalUpdate(dice1+dice2);
+	}
+	
+	public void newRound(boolean v) {
+		tb.setNewRoundEnabled(true);
 	}
 }

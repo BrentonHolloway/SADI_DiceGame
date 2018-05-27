@@ -49,8 +49,13 @@ public class DiceDisplay extends JPanel {
 	}
 	
 	public void showDicePanel(String id) {
+		cards.setVisible(true);
 		CardLayout c = (CardLayout)cards.getLayout();
 		c.show(cards, id);
+	}
+	
+	public void hideDicePanel() {
+		cards.setVisible(false);
 	}
 	
 	public void updateDicePanel(String id, String die1, String die2) {

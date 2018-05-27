@@ -107,15 +107,15 @@ public class GameEngineImpl implements GameEngine{
 						//player wins 2* their bet
 						p.setPoints(p.getPoints()+2*p.getBet());
 						//set bet to zero again
-						p.placeBet(0);
+						//p.placeBet(0);
 					}else if((p.getRollResult().getDice1() + p.getRollResult().getDice2()) == (dice.getDice1() + dice.getDice2())){
 						//player has their bet amount returned
 						p.setPoints(p.getPoints()+p.getBet());
 						//set bet to zero
-						p.placeBet(0);
+						//p.placeBet(0);
 					}else {
 						//player looses bet
-						p.placeBet(0);
+						//p.placeBet(0);
 					}
 				}
 			}

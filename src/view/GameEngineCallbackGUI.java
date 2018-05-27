@@ -54,7 +54,8 @@ public class GameEngineCallbackGUI implements GameEngineCallback{
 		new Thread() {
 			@Override
 			public void run() {
-				mp.updateFinalRoll("House", r.getDice1(), r.getDice2());
+				mp.updateHouseFinalRoll("House", r.getDice1(), r.getDice2());
+				mp.newRound(true);
 			};
 		}.start();
 	}
