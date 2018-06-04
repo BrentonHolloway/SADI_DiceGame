@@ -84,10 +84,10 @@ public class DicePanel extends JPanel {
 		playerName = new JLabel(pn);
 		add(playerName, gbc_lblPlayername);
 		
-		JLabel lblDie = new JLabel(new ImageIcon("./images/pair_of_die_6.png"));
+		JLabel lblDie = new JLabel(new ImageIcon("./images/pair_of_die_6.png")); //Dice by Marco Livolsi from the Noun Project
 		add(lblDie, gbc_lblDie);
 		
-		JLabel lblDie_1 = new JLabel(new ImageIcon("./images/pair_of_die_6.png"));
+		JLabel lblDie_1 = new JLabel(new ImageIcon("./images/pair_of_die_6.png")); //Dice by Marco Livolsi from the Noun Project
 		add(lblDie_1, gbc_lblDie_1);
 		
 		die1value = new JLabel(" ");

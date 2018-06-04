@@ -61,16 +61,17 @@ public class ScorePanel extends JPanel {
 		dm.setColumnIdentifiers(header);
 		dm.addColumn("Win/Loss");
 		for(Player p : ge.getAllPlayers()) {
-			int total = p.getRollResult().getDice1() + p.getRollResult().getDice2();
+			
 	        Vector<Object> data = new Vector<Object>();
 	        data.add(p.getPlayerId());
 	        data.add(p.getPlayerName());
 	        data.add(p.getBet());
 	        data.add((p.getRollResult()==null)?"-":p.getRollResult().getDice1());
 	        data.add((p.getRollResult()==null)?"-":p.getRollResult().getDice2());
-	        data.add((p.getRollResult()==null)?"-":total);
+	        data.add((p.getRollResult()==null)?"-":p.getRollResult().getDice1() + p.getRollResult().getDice2());
 	        
 	        if(p.getRollResult()!=null) {
+	        	int total = p.getRollResult().getDice1() + p.getRollResult().getDice2();
 	        	if(total < houseDieTotal) {
 	        		data.add("Loss");
 	        	}else if(total == houseDieTotal) {

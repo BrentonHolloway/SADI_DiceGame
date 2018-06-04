@@ -27,7 +27,7 @@ public class MainMenuBar extends JMenuBar {
 	
 	private String creditsTitle = "Credits";
 	private String creditsDescription = "Designed and Implemeted by:\n   Name: Brenton Holloway\n   SID: s2345302 \n\n"
-			+ "I would like to acnoledge......";
+			+ "I would like to acnoledge Marco Livolsi for the dice images and Caitlin George for the person images from the Noun Project used thoughout the application";
 	
 	public MainMenuBar(GameEngine gameEngine, MainPanel mainPanel, StatusBar sb) {
 		this.gameEngine = gameEngine;

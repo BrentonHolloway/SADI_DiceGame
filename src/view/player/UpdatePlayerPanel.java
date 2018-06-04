@@ -90,7 +90,7 @@ public class UpdatePlayerPanel extends JPanel {
 		add(bottomVertStrut, strutConstraint);
 		
 		//image
-		JLabel lblImage = new JLabel(new ImageIcon("./images/player(100-100).png"));
+		JLabel lblImage = new JLabel(new ImageIcon("./images/player(100-100).png")); //person by Caitlin George from the Noun Project
 		add(lblImage, imageConstraint);
 		
 		//Name Label

@@ -32,7 +32,7 @@ public class RollHouseAL implements ActionListener {
 		if(cont == JOptionPane.YES_OPTION){
 			mtb.setEnabled(false);
 			mtb.setNewRound(true);
-			task = new RollHouseWorker(ge, dd, sb);
+			task = new RollHouseWorker(ge, dd, sb, mtb);
 			task.execute();
 		}
 	}

@@ -8,6 +8,7 @@ import javax.swing.SwingWorker;
 
 import model.interfaces.GameEngine;
 import model.interfaces.Player;
+import view.MainToolBar;
 import view.StatusBar;
 import view.dice_board.DiceDisplay;
 
@@ -16,12 +17,14 @@ public class RollHouseWorker extends SwingWorker<Void, String> {
 	private GameEngine ge;
 	private DiceDisplay dd;
 	private StatusBar sb;
+	private MainToolBar mtb;
 	private boolean oneRolled;
 	
-	public RollHouseWorker(GameEngine ge, DiceDisplay dd, StatusBar sb) {
+	public RollHouseWorker(GameEngine ge, DiceDisplay dd, StatusBar sb, MainToolBar mtb) {
 		this.ge = ge;
 		this.dd = dd;
 		this.sb = sb;
+		this.mtb = mtb;
 	}
 
 	@Override
@@ -57,6 +60,8 @@ public class RollHouseWorker extends SwingWorker<Void, String> {
 			get();
 			publish("House Rolled");
 		}catch (ExecutionException | InterruptedException e) {
+			mtb.setEnabled(true);
+			mtb.setNewRound(false);
 			JOptionPane.showMessageDialog(null, "Error\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
